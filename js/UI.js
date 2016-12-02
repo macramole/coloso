@@ -50,7 +50,7 @@ var UI = {
     },
 
     initButtons : function() {
-        
+
     },
 
     // Evento que se llama cuando se clickea un grupo
