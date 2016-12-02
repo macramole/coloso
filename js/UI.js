@@ -65,7 +65,14 @@ var UI = {
 
         if ( ["cabeza", "ojoIzq", "ojoDer", "boca"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
             $("#coloso object").addClass("zoom");
-            $("#presets").addClass("visible");
+
+            if ( ["ojoIzq", "ojoDer"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
+                $("#presets").addClass("visible");
+                $("#presets .ojos").addClass("visible");
+            } else if ( Coloso.grupoSelected.id == "boca" ) {
+                $("#presets").addClass("visible");
+                $("#presets .boca").addClass("visible");
+            }
         }
     }
 }
