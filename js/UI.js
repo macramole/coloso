@@ -63,10 +63,10 @@ var UI = {
         $("#btnCerrar").addClass("visible");
         $("#areas").text( Coloso.grupoSelected.id  );
 
-        if ( ["cabeza", "ojoIzq", "ojoDer", "boca"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
+        if ( ["cabeza","ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
             $("#coloso object").addClass("zoom");
 
-            if ( ["ojoIzq", "ojoDer"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
+            if ( ["ojo_izquierdo", "ojo_derecho"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
                 $("#presets").addClass("visible");
                 $("#presets .ojos").addClass("visible");
             } else if ( Coloso.grupoSelected.id == "boca" ) {
