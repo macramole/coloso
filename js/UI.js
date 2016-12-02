@@ -27,6 +27,8 @@ var UI = {
         $("#animation .frame").click(function() {
             $("#animation .frame").removeClass("selected");
             $(this).addClass("selected");
+            Frames.setFrame($(this).index());
+
         });
         $("#animation .flecha").click(function() {
             var $next = $("#animation .frame.selected").next();

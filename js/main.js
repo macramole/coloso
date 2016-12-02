@@ -21,4 +21,5 @@ $( function() {
 window.onload = function() {
     Coloso.init();
     UI.init();
+    Frames.init();
 };
