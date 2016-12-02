@@ -4,6 +4,7 @@ var UI = {
     init : function() {
         UI.initColores();
         UI.initFrames();
+        UI.initButtons();
 
         $("#btnCerrar").click(function() {
             Coloso.unselect();
@@ -46,6 +47,10 @@ var UI = {
             $next.addClass("selected");
             Frames.setFrame($next.index());
         });
+    },
+
+    initButtons : function() {
+        
     },
 
     // Evento que se llama cuando se clickea un grupo
