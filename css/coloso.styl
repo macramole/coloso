@@ -1,0 +1,139 @@
+// out: ./coloso.css, sourcemap: true, compress: false
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: black;
+    color: #878787;
+
+    font-family: "Josefin Sans";
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-size: 3em;
+    line-height: 0.7em;
+    letter-spacing: -4px;
+    padding-top: 14px;
+    margin-bottom: -2px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 1.4em;
+}
+
+#mainWrapper {
+    text-align: center;
+
+    #title {
+        height: 10%;
+        overflow: hidden;
+        background-color: white;
+        color: black;
+        text-align: left;
+    }
+
+    #content {
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    #coloso {
+        height: 60%;
+        position: relative;
+
+        object {
+            height: 100%;
+        }
+
+        #btnCerrar {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            cursor: pointer;
+            opacity: 0;
+            width: 8%;
+
+            &.visible {
+                opacity: 1;
+            }
+        }
+
+        #colores {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 17%;
+
+            li {
+                float: left;
+                height: 100%;
+                width: 17.6%;
+                margin-right: 3%;
+                cursor: pointer;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            opacity: 0;
+
+            &.visible {
+                opacity: 1;
+            }
+        }
+    }
+
+    #areas {
+        height: 5%;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.2em;
+        border-top: 2px solid #525252;
+        padding-top: 10px;
+        box-sizing: border-box;
+
+    }
+
+    #animation {
+        // background-color: red;
+        height: 25%;
+        background-color: white;
+
+        .framesWrapper {
+            height: 20%;
+
+            > img {
+                height: 100%;
+                display: inline-block;
+                width: 8%;
+            }
+
+            #frames {
+                width: 80%;
+                height: 100%;
+                display: inline-block;
+            }
+
+            .frame {
+                width: 10%;
+                height: 100%;
+                background-color: #878787;
+
+                &.selected {
+                    background-color: #3B3B3B;
+                }
+            }
+        }
+    }
+}

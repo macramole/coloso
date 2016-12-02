@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #878787;
+  font-family: "Josefin Sans";
+  font-weight: 600;
+}
+h1 {
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  font-size: 3em;
+  line-height: 0.7em;
+  letter-spacing: -4px;
+  padding-top: 14px;
+  margin-bottom: -2px;
+}
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 1.4em;
+}
+#mainWrapper {
+  text-align: center;
+}
+#mainWrapper #title {
+  height: 10%;
+  overflow: hidden;
+  background-color: #fff;
+  color: #000;
+  text-align: left;
+}
+#mainWrapper #content {
+  margin: 0 auto;
+  overflow: hidden;
+}
+#mainWrapper #coloso {
+  height: 60%;
+  position: relative;
+}
+#mainWrapper #coloso object {
+  height: 100%;
+}
+#mainWrapper #coloso #btnCerrar {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  cursor: pointer;
+  opacity: 0;
+  width: 8%;
+}
+#mainWrapper #coloso #btnCerrar.visible {
+  opacity: 1;
+}
+#mainWrapper #coloso #colores {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 17%;
+  opacity: 0;
+}
+#mainWrapper #coloso #colores li {
+  float: left;
+  height: 100%;
+  width: 17.6%;
+  margin-right: 3%;
+  cursor: pointer;
+}
+#mainWrapper #coloso #colores li:last-child {
+  margin-right: 0;
+}
+#mainWrapper #coloso #colores.visible {
+  opacity: 1;
+}
+#mainWrapper #areas {
+  height: 5%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2em;
+  border-top: 2px solid #525252;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+#mainWrapper #animation {
+  height: 25%;
+  background-color: #fff;
+}
+#mainWrapper #animation .framesWrapper {
+  height: 20%;
+}
+#mainWrapper #animation .framesWrapper > img {
+  height: 100%;
+  display: inline-block;
+  width: 8%;
+}
+#mainWrapper #animation .framesWrapper #frames {
+  width: 80%;
+  height: 100%;
+  display: inline-block;
+}
+#mainWrapper #animation .framesWrapper .frame {
+  width: 10%;
+  height: 100%;
+  background-color: #878787;
+}
+#mainWrapper #animation .framesWrapper .frame.selected {
+  background-color: #3b3b3b;
+}
+/*# sourceMappingURL=coloso.css.map */
