@@ -1,5 +1,5 @@
 var Coloso = {
-    GRUPOS : ["corazon", "brazos", "cintura", "hombros"],
+    GRUPOS : ["corazon", "brazos", "cintura", "hombros","cabeza"],
     COLORES : ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D" ],
 
     svg : null,

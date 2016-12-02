@@ -18,6 +18,7 @@ var UI = {
             $(this).css("background-color", Coloso.COLORES[i]);
             $(this).click(function() {
                 Coloso.setColor(i);
+                Frames.setColor(i);
             })
         });
 
@@ -43,6 +44,7 @@ var UI = {
 
             $("#animation .frame").removeClass("selected");
             $next.addClass("selected");
+            Frames.setFrame($next.index());
         });
     },
 
