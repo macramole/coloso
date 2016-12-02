@@ -97,6 +97,7 @@ p {
   width: 80%;
   margin: 0px auto;
   text-align: center;
+  visibility: hidden;
 }
 #mainWrapper #coloso #presets > div.visible {
   visibility: visible;
@@ -121,6 +122,11 @@ p {
   border-top: 2px solid #525252;
   padding-top: 10px;
   box-sizing: border-box;
+}
+#mainWrapper #areas span.flecha {
+  position: relative;
+  top: -2px;
+  display: inline-block;
 }
 #mainWrapper #animation {
   height: 25%;
@@ -181,6 +187,13 @@ p {
   font-size: 1.6em;
   padding: 0.4em 0.6em 0.2em 0.6em;
   font-weight: 900;
+}
+#mainWrapper #animation #buttons button span {
+  position: relative;
+  top: -3px;
+  margin-left: 0.3em;
+  display: inline-block;
+  margin-top: -7px;
 }
 #mainWrapper #animation #buttons #btnPlay {
   background-color: #ff00ab;
