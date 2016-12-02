@@ -12,6 +12,7 @@ var UI = {
 
             $("#colores").removeClass("visible");
             $("#btnCerrar").removeClass("visible");
+            $("#presets").removeClass("visible");
 
             $("#coloso object").removeClass("zoom");
         });
@@ -62,8 +63,9 @@ var UI = {
         $("#btnCerrar").addClass("visible");
         $("#areas").text( Coloso.grupoSelected.id  );
 
-        if ( Coloso.grupoSelected.id == "cabeza" ) {
+        if ( ["cabeza", "ojoIzq", "ojoDer", "boca"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
             $("#coloso object").addClass("zoom");
+            $("#presets").addClass("visible");
         }
     }
 }

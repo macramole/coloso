@@ -45,7 +45,7 @@ p {
   transition: transform 0.7s;
 }
 #mainWrapper #coloso object.zoom {
-  transform: scale(3, 3) translate(0, 32%);
+  transform: scale(2.8, 2.8) translate(0, 28%);
 }
 #mainWrapper #coloso #btnCerrar {
   position: absolute;
@@ -82,6 +82,36 @@ p {
 }
 #mainWrapper #coloso #colores.visible {
   opacity: 1;
+}
+#mainWrapper #coloso #presets {
+  background-color: #363636;
+  height: 29%;
+  position: absolute;
+  bottom: 17%;
+  left: 0;
+  width: 100%;
+  padding: 5% 0 2%;
+  visibility: hidden;
+}
+#mainWrapper #coloso #presets > div {
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+}
+#mainWrapper #coloso #presets > div.visible {
+  visibility: visible;
+}
+#mainWrapper #coloso #presets img {
+  margin-left: 6%;
+  width: 17%;
+  display: inline;
+}
+#mainWrapper #coloso #presets img:first-child,
+#mainWrapper #coloso #presets img.nomargin {
+  margin-left: 0;
+}
+#mainWrapper #coloso #presets.visible {
+  visibility: visible;
 }
 #mainWrapper #areas {
   height: 5%;
