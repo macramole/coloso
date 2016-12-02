@@ -92,23 +92,60 @@ p {
 }
 #mainWrapper #animation .framesWrapper {
   height: 20%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 0;
 }
-#mainWrapper #animation .framesWrapper > img {
+#mainWrapper #animation .framesWrapper li {
+  display: inline-block;
+  height: 100%;
+  margin-left: 0.76%;
+  cursor: pointer;
+}
+#mainWrapper #animation .framesWrapper li:first-child {
+  margin-left: 0;
+}
+#mainWrapper #animation .framesWrapper li.flecha img {
   height: 100%;
   display: inline-block;
+}
+#mainWrapper #animation .framesWrapper li.frame {
   width: 8%;
-}
-#mainWrapper #animation .framesWrapper #frames {
-  width: 80%;
-  height: 100%;
-  display: inline-block;
-}
-#mainWrapper #animation .framesWrapper .frame {
-  width: 10%;
   height: 100%;
   background-color: #878787;
 }
-#mainWrapper #animation .framesWrapper .frame.selected {
-  background-color: #3b3b3b;
+#mainWrapper #animation .framesWrapper li.frame .circulo {
+  background-color: none;
+  border: 1px solid #000;
+  width: 50%;
+  height: 50%;
+  border-radius: 20px;
+  position: relative;
+  left: 25%;
+  top: 25%;
+}
+#mainWrapper #animation .framesWrapper li.frame.selected {
+  background-color: #3a3a3a;
+}
+#mainWrapper #animation .framesWrapper li.frame.selected .circulo {
+  background-color: #ff00ab;
+  border: 0;
+}
+#mainWrapper #animation #buttons {
+  color: #fff;
+}
+#mainWrapper #animation #buttons #btnPlay {
+  background-color: #ff00ab;
+}
+#mainWrapper #animation #buttons #btnBorrar {
+  background-color: #b3b3b3;
+}
+#mainWrapper #animation #buttons #btnCopy {
+  background-color: #000;
+}
+#mainWrapper #animation #buttons #btnPaste {
+  background-color: #000;
 }
 /*# sourceMappingURL=coloso.css.map */

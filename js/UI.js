@@ -2,7 +2,8 @@ var UI = {
     DEFAULT_AREA : "Seleccionar área",
 
     init : function() {
-        UI.loadColores();
+        UI.initColores();
+        UI.initFrames();
 
         $("#btnCerrar").click(function() {
             Coloso.unselect();
@@ -12,7 +13,7 @@ var UI = {
         });
     },
 
-    loadColores : function() {
+    initColores : function() {
         $("#colores li").each(function(i) {
             $(this).css("background-color", Coloso.COLORES[i]);
             $(this).click(function() {
@@ -20,6 +21,27 @@ var UI = {
             })
         });
 
+    },
+
+    initFrames : function() {
+        $("#animation .frame").click(function() {
+            $("#animation .frame").removeClass("selected");
+            $(this).addClass("selected");
+        });
+        $("#animation .flecha").click(function() {
+            var $next = $("#animation .frame.selected").next();
+
+            if ( $(this).hasClass("flechaIzq") ) {
+                $next = $("#animation .frame.selected").prev();
+            }
+
+            if ( !$next.hasClass("frame") ) {
+                return;
+            }
+
+            $("#animation .frame").removeClass("selected");
+            $next.addClass("selected");
+        });
     },
 
     // Evento que se llama cuando se clickea un grupo

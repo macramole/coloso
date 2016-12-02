@@ -112,27 +112,78 @@ p {
 
         .framesWrapper {
             height: 20%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            font-size: 0;
 
-            > img {
-                height: 100%;
+            li {
                 display: inline-block;
-                width: 8%;
-            }
-
-            #frames {
-                width: 80%;
                 height: 100%;
-                display: inline-block;
-            }
+                margin-left: 0.76%;
+                cursor: pointer;
 
-            .frame {
-                width: 10%;
-                height: 100%;
-                background-color: #878787;
-
-                &.selected {
-                    background-color: #3B3B3B;
+                &:first-child {
+                    margin-left: 0;
                 }
+
+                &.flecha {
+                    img {
+                        height: 100%;
+                        display: inline-block;
+                    }
+                }
+
+                &.frame {
+                    width: 8%;
+                    height: 100%;
+                    background-color: #878787;
+
+                    .circulo {
+                        background-color: none;
+                        border: 1px solid black;
+                        width: 50%;
+                        height: 50%;
+                        border-radius: 20px;
+                        position: relative;
+                        left: 25%;
+                        top: 25%;
+                    }
+
+                    &.selected {
+                        background-color: #3A3A3A;
+
+                        .circulo {
+                            background-color: #ff00ab;
+                            border: 0;
+                        }
+                    }
+                }
+
+            }
+
+            // #frames {
+            //     width: 80%;
+            //     height: 100%;
+            //     display: inline-block;
+            // }
+        }
+
+        #buttons {
+            color: white;
+
+            #btnPlay {
+                background-color: #ff00ab;
+            }
+            #btnBorrar {
+                background-color: #b3b3b3;
+            }
+            #btnCopy {
+                background-color: black;
+            }
+            #btnPaste {
+                background-color: black;
             }
         }
     }
