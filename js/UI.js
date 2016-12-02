@@ -7,10 +7,13 @@ var UI = {
         UI.initButtons();
 
         $("#btnCerrar").click(function() {
+
             Coloso.unselect();
 
             $("#colores").removeClass("visible");
             $("#btnCerrar").removeClass("visible");
+
+            $("#coloso object").removeClass("zoom");
         });
     },
 
@@ -48,7 +51,7 @@ var UI = {
     },
 
     initButtons : function() {
-        
+
     },
 
     // Evento que se llama cuando se clickea un grupo
@@ -56,5 +59,9 @@ var UI = {
         $("#colores").addClass("visible");
         $("#btnCerrar").addClass("visible");
         $("#areas").text( Coloso.grupoSelected.id  );
+
+        if ( Coloso.grupoSelected.id == "cabeza" ) {
+            $("#coloso object").addClass("zoom");
+        }
     }
 }

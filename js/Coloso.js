@@ -1,5 +1,5 @@
 var Coloso = {
-    GRUPOS : ["corazon", "brazos", "cintura", "hombros"],
+    GRUPOS : ["corazon", "brazos", "cintura", "hombros", "cabeza"],
     COLORES : ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D" ],
 
     svg : null,
@@ -15,6 +15,7 @@ var Coloso = {
     activateGrupos : function() {
         for ( i in Coloso.GRUPOS ) {
             var grupo = Coloso.svg.querySelector("#" + Coloso.GRUPOS[i]);
+            var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
                 Coloso.grupoSelected = this;
                 UI.onGrupoSelected();
