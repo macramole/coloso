@@ -16,9 +16,11 @@ var Frames = {
     },
     setFrame: function(f) {
         Frames.actualFrame = f - 1; //!!!!!
-        if (Frames.frames[Frames.actualFrame] !== undefined) {
+        if (Frames.frames[Frames.actualFrame] === undefined) {
             Frames.frames[Frames.actualFrame] = this.getFrameObject();
         }
+
+        
 
     },
     getFrameObject: function() {

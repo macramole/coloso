@@ -34,11 +34,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="537.98913"
-     inkscape:cy="936.24114"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="466.78846"
+     inkscape:cy="924.52496"
      inkscape:document-units="px"
-     inkscape:current-layer="cabeza"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1348"
      inkscape:window-height="709"
@@ -1067,7 +1067,7 @@
       </g>
     </g>
     <g
-       id="ojoIzq"
+       id="ojo_izquierdo"
        inkscape:label="#g4355">
       <rect
          y="66.64782"
@@ -1095,7 +1095,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       id="ojoDer"
+       id="ojo_derecho"
        inkscape:label="#g4375">
       <rect
          y="67.004967"
