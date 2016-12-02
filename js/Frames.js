@@ -14,23 +14,24 @@ var Frames = {
         Frames.frames[Frames.actualFrame] = this.getFrameObject();
 
     },
-    setFrame: function(f) {
-        Frames.actualFrame = f - 1; //!!!!!
-        if (Frames.frames[Frames.actualFrame] === undefined) {
-            Frames.frames[Frames.actualFrame] = this.getFrameObject();
-        }
-
-        
-
-    },
     getFrameObject: function() {
         var obj = {}
             //cuando se selecciona un nuevo frame, este chabon me devuelve un objeto que tenga todos los ids:color
         for (var i = 0; i < Coloso.GRUPOS.length; i++) {
-
-            obj[Coloso.GRUPOS[i]] = "";
+            obj[Coloso.GRUPOS[i]] = "#7D7D7D";
         }
         return obj;
+    },
+    setFrame: function(f) {
+        Frames.actualFrame = f - 1; //!!!!!
+        if (Frames.frames[Frames.actualFrame] === undefined) {
+            Frames.frames[Frames.actualFrame] = this.getFrameObject();
+            Coloso.setColorsAll(Frames.frames[Frames.actualFrame]);
+
+        }
+
+
+
     },
     setColor: function(c) {
         var grupo = Coloso.grupoSelected.id;

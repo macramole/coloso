@@ -1,5 +1,5 @@
 var Coloso = {
-    GRUPOS : ["corazon", "brazos", "cintura", "hombros", "cabeza", "ojoIzq", "ojoDer", "boca"],
+    GRUPOS : ["corazon", "brazos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES : ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D" ],
 
     svg : null,
@@ -46,5 +46,8 @@ var Coloso = {
 
     unselect : function() {
         Coloso.grupoSelected = null;
+    },
+    setColorsAll(obj){
+      console.log(Coloso.svg);
     }
 }
