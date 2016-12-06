@@ -18,26 +18,34 @@ var Frames = {
         var obj = {}
             //cuando se selecciona un nuevo frame, este chabon me devuelve un objeto que tenga todos los ids:color
         for (var i = 0; i < Coloso.GRUPOS.length; i++) {
-            obj[Coloso.GRUPOS[i]] = "#7D7D7D";
+            obj[Coloso.GRUPOS[i]] = 4;
         }
         return obj;
     },
-    setFrame: function(f) {
-        Frames.actualFrame = f - 1; //!!!!!
-        if (Frames.frames[Frames.actualFrame] === undefined) {
+    setFrame: function(f, onAnim) {
+        Frames.actualFrame = f; //!!!!!
+
+        if (Frames.frames[Frames.actualFrame] === undefined && !onAnim) {
             Frames.frames[Frames.actualFrame] = this.getFrameObject();
-            Coloso.setColorsAll(Frames.frames[Frames.actualFrame]);
+        }
+        Coloso.setColorsAll(Frames.frames[Frames.actualFrame]);
+
+
+
+    },
+    toNextFrame: function() {
+        if (Frames.actualFrame > Frames.frames.length + 1 || Frames.actualFrame === 9) {
+            Frames.setFrame(0);
+        } else {
+            Frames.setFrame((Frames.actualFrame + 1) % Frames.frames.length, true)
 
         }
-
-
 
     },
     setColor: function(c) {
         var grupo = Coloso.grupoSelected.id;
-        var color = Coloso.COLORES[c];
+        var color = c;
         Frames.frames[Frames.actualFrame][grupo] = color;
-        console.log(Frames.frames);
 
     }
 

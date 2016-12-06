@@ -47,7 +47,14 @@ var Coloso = {
     unselect : function() {
         Coloso.grupoSelected = null;
     },
-    setColorsAll(obj){
-      console.log(Coloso.svg);
+    setColorsAll: function(obj){
+      var prevSelected = Coloso.grupoSelected;
+      for(var key in obj){
+        Coloso.grupoSelected = Coloso.svg.querySelector("#" + key);
+        Coloso.setColor(obj[key]);
+
+      }
+      Coloso.grupoSelected = prevSelected;
+
     }
 }
