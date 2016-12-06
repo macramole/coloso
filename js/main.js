@@ -9,7 +9,9 @@ $( function() {
     $("#content").css({
         width : width,
         height : height
-    })
+    });
+
+    $("body").css("font-size", height * 16 / 976);
 
     $("#btnFullscreen").click(function() {
         screenfull.request();
