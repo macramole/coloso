@@ -1,6 +1,6 @@
 var UI = {
     DEFAULT_AREA: "Seleccionar área",
-    PLAY_TEXT:'PLAY <span>&#9654;</span>' ,
+    PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
 
     init: function() {
@@ -8,6 +8,7 @@ var UI = {
         UI.initFrames();
         UI.initButtons();
 
+        //setup boton cerrar zoom a cabeza
         $("#btnCerrar").click(function() {
 
             Coloso.unselect();
@@ -17,6 +18,15 @@ var UI = {
             $("#presets, #presets > div").removeClass("visible");
 
             $("#coloso object").removeClass("zoom");
+        });
+
+        //setup slider
+        $("#slideVelocidad").bind('input', function() {
+            if (Animation.isPlaying) {
+                Animation.stop();
+                Animation.play(Animation.mapTime($(this).val()));
+            }
+
         });
     },
 
@@ -33,9 +43,9 @@ var UI = {
 
     initFrames: function() {
         $("#animation .frame").each(function(i) {
-            $(this).click(function(){
-              UI.onFrameChanged(i)
-              Frames.setFrame(i, false);
+            $(this).click(function() {
+                UI.onFrameChanged(i)
+                Frames.setFrame(i, false);
             });
 
 
@@ -53,7 +63,7 @@ var UI = {
 
             $("#animation .frame").removeClass("selected");
             $next.addClass("selected");
-            Frames.setFrame($next.index());
+            Frames.setFrame($next.index() - 1);//si numero hardcodeado feo, blablabla
         });
     },
 
@@ -62,7 +72,7 @@ var UI = {
         $("#animation #btnPlay").click(function() {
             if ($(this).attr("data-play") === "0") {
                 //playAnimation
-                Animation.play(300);
+                Animation.play(Animation.mapTime($("#slideVelocidad").val()));
                 $(this).html(UI.PAUSE_TEXT);
                 $(this).attr("data-play", "1");
             } else {
@@ -78,10 +88,10 @@ var UI = {
             Frames.deleteFrame();
         });
         $("#animation #btnCopy").click(function() {
-          Frames.copyFrame();
+            Frames.copyFrame();
         });
         $("#animation #btnPaste").click(function() {
-          Frames.pasteFrame();
+            Frames.pasteFrame();
         });
 
     },

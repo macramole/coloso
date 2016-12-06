@@ -2,7 +2,7 @@ var Frames = {
 
     INIT_FRAME: 0,
     actualFrame: null,
-    frameToCopy:null,
+    frameToCopy:{},
     /*
     formato JSON frames
     frame: {id:color,id:color}
@@ -60,7 +60,7 @@ var Frames = {
 
     },
     copyFrame:function(){
-      Frames.frameToCopy = Frames.frames[Frames.actualFrame];
+      Object.assign(Frames.frameToCopy,Frames.frames[Frames.actualFrame]);
     },
     pasteFrame:function(){
       Frames.frames[Frames.actualFrame] = Frames.frameToCopy;
