@@ -29,16 +29,16 @@ p {
 }
 
 
-@media (max-height: 1000px) {
-    body {
-        font-size: 10px;
-    }
-}
-@media (min-height: 1000px) and (max-height: 2000px) {
-    body {
-        font-size: 24px;
-    }
-}
+// @media (max-height: 1000px) {
+//     body {
+//         font-size: 10px;
+//     }
+// }
+// @media (min-height: 1000px) and (max-height: 2000px) {
+//     body {
+//         font-size: 24px;
+//     }
+// }
 
 // @media (min-width: 600px) and (max-width: 1100px) {
 //     body {
@@ -87,7 +87,7 @@ p {
     }
 
     #coloso {
-        height: 60%;
+        height: 65%;
         position: relative;
         overflow: hidden;
 
@@ -201,48 +201,56 @@ p {
 
     #animation {
         // background-color: red;
-        height: 25%;
+        height: 20%;
         background-color: white;
 
         .framesWrapper {
-            height: 20%;
+            height: 25%;
             list-style: none;
             margin: 0;
             padding: 0.5em 0 0 0;
             text-align: left;
 
+            display: flex;
+            justify-content: space-between;
+
             li {
                 // display: inline-block;
-                float: left;
+                // float: left;
                 height: 100%;
-                margin-left: 0.76%;
+                // margin-left: 0.76%;
                 cursor: pointer;
 
+                &.flecha {
+                    width: 6%;
+                }
+
                 &:first-child {
-                    margin-left: 0;
+                    // margin-left: 0;
                 }
 
                 &.flecha {
                     img {
+                        // height: 100%;
+                        // display: inline-block;
+                        width: 100%;
                         height: 100%;
-                        display: inline-block;
                     }
                 }
 
                 &.frame {
-                    width: 8%;
+                    width: 7%;
                     height: 100%;
                     background-color: #878787;
 
                     .circulo {
-                        background-color: none;
-                        border: 1px solid black;
+                        border: 1px solid #000;
                         width: 50%;
-                        height: 50%;
+                        height: 40%;
                         border-radius: 20px;
                         position: relative;
-                        left: 25%;
-                        top: 25%;
+                        left: 23%;
+                        top: 29%;
                     }
 
                     &.selected {
@@ -250,7 +258,7 @@ p {
 
                         .circulo {
                             background-color: #ff00ab;
-                            border: 0;
+                            border: 1px solid #ff00ab;
                         }
                     }
                 }
@@ -266,6 +274,8 @@ p {
 
         #buttons {
             margin-top: 0.5em;
+            display: flex;
+            justify-content: space-between;
 
             #btnPlay {
                 background-color: #ff00ab;
@@ -284,7 +294,7 @@ p {
         #velocityAndSend {
             overflow: hidden;
             margin-top: 1em;
-            height: 25%;
+            height: 30%;
 
             #velocity {
                 width: 55%;
