@@ -5,20 +5,22 @@
         <title>Coloso</title>
         <link rel="stylesheet" href="css/coloso.css" media="screen">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:600,700" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> -->
+        <meta name="viewport" content="user-scalable=no" />
     </head>
     <body>
         <!-- <img src="estuctura_3.svg" /> -->
         <div id="mainWrapper">
             <div id="content">
                 <div id="title">
-                    <h1>COLOSO</h1>
-                    <p>
+                    <div class="info">
+                        <h1>COLOSO</h1>
                         Intervención artística <br />
                         TECNÓPOLIS. Buenos Aires / Argentina
-                    </p>
+                    </div>
                     <div class="logo">
-
+                        <img src="image/logo.svg" /><br />
+                        por Doma
                     </div>
                 </div>
                 <div id="coloso">
@@ -47,7 +49,7 @@
                     </ul>
                 </div>
                 <div id="areas">
-                    Seleccionar área
+                    <span class="flecha">&#9656;</span> <span class="info">Seleccionar área</span> <span class="flecha">&#9666;</span>
                 </div>
                 <div id="animation">
                     <!-- <button id="btnFullscreen">full</button> -->
@@ -71,10 +73,10 @@
                     </ul>
 
                     <div id="buttons">
-                        <button id="btnPlay" class="button" data-play="0">PLAY &gt;</button>
-                        <button id="btnBorrar" class="button">BORRAR &gt;</button>
-                        <button id="btnCopy" class="button">COPY &gt;</button>
-                        <button id="btnPaste" class="button">PASTE &gt;</button>
+                        <button id="btnPlay" class="button" data-play="0">PLAY <span>&#9654;</span></button>
+                        <button id="btnBorrar" class="button">BORRAR</button>
+                        <button id="btnCopy" class="button">COPY</button>
+                        <button id="btnPaste" class="button">PASTE</button>
                     </div>
 
                 </div>

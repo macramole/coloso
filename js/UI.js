@@ -12,7 +12,7 @@ var UI = {
 
             $("#colores").removeClass("visible");
             $("#btnCerrar").removeClass("visible");
-            $("#presets").removeClass("visible");
+            $("#presets, #presets > div").removeClass("visible");
 
             $("#coloso object").removeClass("zoom");
         });
@@ -86,10 +86,11 @@ var UI = {
     onGrupoSelected: function() {
         $("#colores").addClass("visible");
         $("#btnCerrar").addClass("visible");
-        $("#areas").text(Coloso.grupoSelected.id);
+        $("#areas span.info").text( Coloso.grupoSelected.id.replace("_", " ")  );
 
         if (["cabeza", "ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0) {
             $("#coloso object").addClass("zoom");
+            $("#presets, #presets > div").removeClass("visible");
 
             if (["ojo_izquierdo", "ojo_derecho"].indexOf(Coloso.grupoSelected.id) >= 0) {
                 $("#presets").addClass("visible");

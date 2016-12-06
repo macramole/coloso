@@ -5,6 +5,7 @@ body {
   color: #878787;
   font-family: "Josefin Sans";
   font-weight: 600;
+  font-size: 16px;
 }
 h1 {
   font-weight: 700;
@@ -21,6 +22,16 @@ p {
   padding: 0;
   font-size: 1.4em;
 }
+@media (max-height: 1000px) {
+  body {
+    font-size: 16px;
+  }
+}
+@media (min-height: 1000px) and (max-height: 2000px) {
+  body {
+    font-size: 24px;
+  }
+}
 #mainWrapper {
   text-align: center;
 }
@@ -30,6 +41,22 @@ p {
   background-color: #fff;
   color: #000;
   text-align: left;
+  font-size: 1.2em;
+  box-sizing: border-box;
+}
+#mainWrapper #title .info {
+  float: left;
+  width: 80%;
+}
+#mainWrapper #title .logo {
+  float: right;
+  width: 20%;
+  text-align: right;
+  padding: 3% 1% 0 0;
+  box-sizing: border-box;
+}
+#mainWrapper #title .logo img {
+  width: 43%;
 }
 #mainWrapper #content {
   margin: 0 auto;
@@ -68,7 +95,7 @@ p {
   margin: 0;
   padding: 0;
   height: 17%;
-  opacity: 0;
+  visibility: hidden;
 }
 #mainWrapper #coloso #colores li {
   float: left;
@@ -81,7 +108,7 @@ p {
   margin-right: 0;
 }
 #mainWrapper #coloso #colores.visible {
-  opacity: 1;
+  visibility: visible;
 }
 #mainWrapper #coloso #presets {
   background-color: #363636;
@@ -97,6 +124,7 @@ p {
   width: 80%;
   margin: 0px auto;
   text-align: center;
+  visibility: hidden;
 }
 #mainWrapper #coloso #presets > div.visible {
   visibility: visible;
@@ -122,6 +150,11 @@ p {
   padding-top: 10px;
   box-sizing: border-box;
 }
+#mainWrapper #areas span.flecha {
+  position: relative;
+  top: -2px;
+  display: inline-block;
+}
 #mainWrapper #animation {
   height: 25%;
   background-color: #fff;
@@ -137,7 +170,7 @@ p {
 #mainWrapper #animation .framesWrapper li {
   display: inline-block;
   height: 100%;
-  margin-left: 0.76%;
+  margin-left: 0.5%;
   cursor: pointer;
 }
 #mainWrapper #animation .framesWrapper li:first-child {
@@ -181,6 +214,13 @@ p {
   font-size: 1.6em;
   padding: 0.4em 0.6em 0.2em 0.6em;
   font-weight: 900;
+}
+#mainWrapper #animation #buttons button span {
+  position: relative;
+  top: -3px;
+  margin-left: 0.3em;
+  display: inline-block;
+  margin-top: -7px;
 }
 #mainWrapper #animation #buttons #btnPlay {
   background-color: #ff00ab;
