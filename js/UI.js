@@ -1,5 +1,7 @@
 var UI = {
     DEFAULT_AREA: "Seleccionar área",
+    PLAY_TEXT:'PLAY <span>&#9654;</span>' ,
+    PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
 
     init: function() {
         UI.initColores();
@@ -31,11 +33,10 @@ var UI = {
 
     initFrames: function() {
         $("#animation .frame").each(function(i) {
-            $(this).click(function() {
-                $("#animation .frame").removeClass("selected");
-                $(this).addClass("selected");
-                Frames.setFrame(i,false);
-            })
+            $(this).click(function(){
+              UI.onFrameChanged(i)
+              Frames.setFrame(i, false);
+            });
 
 
         });
@@ -62,22 +63,25 @@ var UI = {
             if ($(this).attr("data-play") === "0") {
                 //playAnimation
                 Animation.play(300);
+                $(this).html(UI.PAUSE_TEXT);
                 $(this).attr("data-play", "1");
             } else {
                 Animation.stop();
                 $(this).attr("data-play", "0");
+                $(this).html(UI.PLAY_TEXT);
+
 
             }
 
         });
         $("#animation #btnBorrar").click(function() {
-
+            Frames.deleteFrame();
         });
         $("#animation #btnCopy").click(function() {
-
+          Frames.copyFrame();
         });
         $("#animation #btnPaste").click(function() {
-
+          Frames.pasteFrame();
         });
 
     },
@@ -86,7 +90,7 @@ var UI = {
     onGrupoSelected: function() {
         $("#colores").addClass("visible");
         $("#btnCerrar").addClass("visible");
-        $("#areas span.info").text( Coloso.grupoSelected.id.replace("_", " ")  );
+        $("#areas span.info").text(Coloso.grupoSelected.id.replace("_", " "));
 
         if (["cabeza", "ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0) {
             $("#coloso object").addClass("zoom");
@@ -100,5 +104,10 @@ var UI = {
                 $("#presets .boca").addClass("visible");
             }
         }
+    },
+    onFrameChanged: function(i) {
+        $("#animation .frame").removeClass("selected");
+        $("#animation .frame").eq(i).addClass("selected");
+
     }
 }
