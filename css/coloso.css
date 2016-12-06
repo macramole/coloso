@@ -163,14 +163,13 @@ p {
   height: 20%;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.5em 0 0 0;
   text-align: left;
-  font-size: 0;
 }
 #mainWrapper #animation .framesWrapper li {
-  display: inline-block;
+  float: left;
   height: 100%;
-  margin-left: 0.5%;
+  margin-left: 0.76%;
   cursor: pointer;
 }
 #mainWrapper #animation .framesWrapper li:first-child {
@@ -205,23 +204,6 @@ p {
 #mainWrapper #animation #buttons {
   margin-top: 0.5em;
 }
-#mainWrapper #animation #buttons button {
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1.6em;
-  padding: 0.4em 0.6em 0.2em 0.6em;
-  font-weight: 900;
-}
-#mainWrapper #animation #buttons button span {
-  position: relative;
-  top: -3px;
-  margin-left: 0.3em;
-  display: inline-block;
-  margin-top: -7px;
-}
 #mainWrapper #animation #buttons #btnPlay {
   background-color: #ff00ab;
 }
@@ -233,5 +215,85 @@ p {
 }
 #mainWrapper #animation #buttons #btnPaste {
   background-color: #000;
+}
+#mainWrapper #animation #velocityAndSend {
+  overflow: hidden;
+  margin-top: 1em;
+  height: 25%;
+}
+#mainWrapper #animation #velocityAndSend #velocity {
+  width: 55%;
+  float: left;
+  height: 100%;
+  text-align: left;
+}
+#mainWrapper #animation #velocityAndSend #velocity span {
+  color: #00c6ff;
+  font-weight: 700;
+  font-size: 1.5em;
+}
+#mainWrapper #animation #velocityAndSend #enviar {
+  width: 45%;
+  float: right;
+  text-align: right;
+}
+#mainWrapper #animation #velocityAndSend #enviar button {
+  background: #00c6ff;
+}
+button {
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.6em;
+  padding: 0.4em 0.6em 0.2em 0.6em;
+  font-weight: 900;
+}
+button span {
+  position: relative;
+  top: -3px;
+  margin-left: 0.3em;
+  display: inline-block;
+  margin-top: -7px;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: #00c6ff;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 100%;
+  width: 21%;
+  background: #000;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: #00c6ff;
+}
+input[type=range]::-moz-range-thumb {
+  height: 100%;
+  width: 21%;
+  background: #000;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
 }
 /*# sourceMappingURL=coloso.css.map */
