@@ -8,6 +8,7 @@ body {
 
     font-family: "Josefin Sans";
     font-weight: 600;
+    font-size: 16px;
 }
 
 h1 {
@@ -27,15 +28,55 @@ p {
     font-size: 1.4em;
 }
 
+@media (max-height: 1000px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media (min-height: 1000px) and (max-height: 2000px) {
+    body {
+        font-size: 24px;
+    }
+}
+// @media (min-width: 600px) and (max-width: 1100px) {
+//     body {
+//         font-size: 9px;
+//     }
+// }
+// @media handheld and (orientation: portrait) {
+//     body {
+//         font-size: 9px;
+//     }
+// }
+
 #mainWrapper {
     text-align: center;
 
     #title {
         height: 10%;
         overflow: hidden;
-        background-color: white;
-        color: black;
+        background-color: #fff;
+        color: #000;
         text-align: left;
+        font-size: 1.2em;
+        // padding-top: 1%;
+        box-sizing: border-box;
+
+        .info {
+            float: left;
+            width: 80%;
+        }
+        .logo {
+            float: right;
+            width: 20%;
+            text-align: right;
+            padding: 3% 1% 0 0;
+            box-sizing: border-box;
+
+            img {
+                width: 43%;
+            }
+        }
     }
 
     #content {
@@ -47,6 +88,8 @@ p {
         height: 60%;
         position: relative;
         overflow: hidden;
+
+
 
         object {
             height: 100%;
@@ -93,10 +136,10 @@ p {
                 }
             }
 
-            opacity: 0;
+            visibility: hidden;
 
             &.visible {
-                opacity: 1;
+                visibility: visible;
             }
         }
 
@@ -170,7 +213,7 @@ p {
             li {
                 display: inline-block;
                 height: 100%;
-                margin-left: 0.76%;
+                margin-left: 0.5%;
                 cursor: pointer;
 
                 &:first-child {

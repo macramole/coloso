@@ -61,7 +61,7 @@ var UI = {
     onGrupoSelected : function() {
         $("#colores").addClass("visible");
         $("#btnCerrar").addClass("visible");
-        $("#areas span.info").text( Coloso.grupoSelected.id  );
+        $("#areas span.info").text( Coloso.grupoSelected.id.replace("_", " ")  );
 
         if ( ["cabeza","ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0 ) {
             $("#coloso object").addClass("zoom");
