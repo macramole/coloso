@@ -44,7 +44,7 @@ var UI = {
     initFrames: function() {
         $("#animation .frame").each(function(i) {
             $(this).click(function() {
-                UI.onFrameChanged(i)
+                UI.onFrameChanged(i);
                 Frames.setFrame(i, false);
             });
 
@@ -63,7 +63,7 @@ var UI = {
 
             $("#animation .frame").removeClass("selected");
             $next.addClass("selected");
-            Frames.setFrame($next.index() - 1);//si numero hardcodeado feo, blablabla
+            Frames.setFrame($next.index() - 1); //si numero hardcodeado feo, blablabla
         });
     },
 
@@ -92,6 +92,27 @@ var UI = {
         });
         $("#animation #btnPaste").click(function() {
             Frames.pasteFrame();
+        });
+        $("#animation #btnEnviar").click(function() {
+            var data = Frames.getAllFrames();
+            var url = "http://localhost:5000/animacion"
+            $.postJSON = function(url, data, success, args) {
+                args = $.extend({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: true,
+                    success: success
+                }, args);
+                return $.ajax(args);
+            };
+
+            $.postJSON(url, data, function(result) {
+                console.log('result', result);
+            });
+
         });
 
     },
