@@ -167,20 +167,37 @@ p {
                 width: 80%;
                 margin: 0px auto;
                 text-align: center;
-                visibility: hidden;
+                // visibility: hidden;
+                display: none;
 
                 &.visible {
-                    visibility: visible;
+                    // visibility: visible;
+                    display: block;
                 }
             }
 
             img {
-                margin-left: 6%;
-                width: 17%;
                 display: inline;
+                cursor: pointer;
 
                 &:first-child, &.nomargin {
                     margin-left: 0;
+                }
+
+                &.selected {
+                    outline: 1px solid red;
+                }
+            }
+
+            .ojos img {
+                margin-left: 6%;
+                width: 17%;
+            }
+            .boca img {
+                margin-bottom: 3%;
+
+                &:nth-child(odd) {
+                    margin-right: 8%;
                 }
             }
 

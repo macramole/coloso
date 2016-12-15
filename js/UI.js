@@ -105,6 +105,7 @@ var UI = {
         if (["cabeza", "ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0) {
             $("#coloso object").addClass("zoom");
             $("#presets, #presets > div").removeClass("visible");
+            $("#coloso #presets img").removeClass("selected");
 
             if (["ojo_izquierdo", "ojo_derecho"].indexOf(Coloso.grupoSelected.id) >= 0) {
                 $("#presets").addClass("visible");

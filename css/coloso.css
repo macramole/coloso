@@ -121,19 +121,31 @@ p {
   width: 80%;
   margin: 0px auto;
   text-align: center;
-  visibility: hidden;
+  display: none;
 }
 #mainWrapper #coloso #presets > div.visible {
-  visibility: visible;
+  display: block;
 }
 #mainWrapper #coloso #presets img {
-  margin-left: 6%;
-  width: 17%;
   display: inline;
+  cursor: pointer;
 }
 #mainWrapper #coloso #presets img:first-child,
 #mainWrapper #coloso #presets img.nomargin {
   margin-left: 0;
+}
+#mainWrapper #coloso #presets img.selected {
+  outline: 1px solid #f00;
+}
+#mainWrapper #coloso #presets .ojos img {
+  margin-left: 6%;
+  width: 17%;
+}
+#mainWrapper #coloso #presets .boca img {
+  margin-bottom: 3%;
+}
+#mainWrapper #coloso #presets .boca img:nth-child(odd) {
+  margin-right: 8%;
 }
 #mainWrapper #coloso #presets.visible {
   visibility: visible;
