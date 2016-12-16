@@ -71,6 +71,12 @@ p {
 #mainWrapper #coloso object.zoom {
   transform: scale(2.8, 2.8) translate(0, 28%);
 }
+#mainWrapper #coloso object .visible {
+  visibility: visible !important;
+}
+#mainWrapper #coloso object .visible circle {
+  visibility: visible !important;
+}
 #mainWrapper #coloso #btnCerrar {
   position: absolute;
   top: 20px;
@@ -103,6 +109,9 @@ p {
 }
 #mainWrapper #coloso #colores li:last-child {
   margin-right: 0;
+}
+#mainWrapper #coloso #colores li.no {
+  background: url("../image/no.svg") #d9d9d9 !important;
 }
 #mainWrapper #coloso #colores.visible {
   visibility: visible;
@@ -143,6 +152,7 @@ p {
 }
 #mainWrapper #coloso #presets .boca img {
   margin-bottom: 3%;
+  width: 36%;
 }
 #mainWrapper #coloso #presets .boca img:nth-child(odd) {
   margin-right: 8%;

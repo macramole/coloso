@@ -108,6 +108,14 @@ p {
             &.zoom {
                 transform: scale(2.8, 2.8) translate(0, 28%);
             }
+
+            .visible {
+                visibility: visible !important;
+
+                circle {
+                    visibility: visible !important;
+                }
+            }
         }
 
         #btnCerrar {
@@ -143,6 +151,10 @@ p {
 
                 &:last-child {
                     margin-right: 0;
+                }
+
+                &.no {
+                    background: url(../image/no.svg) #d9d9d9 !important;
                 }
             }
 
@@ -195,6 +207,7 @@ p {
             }
             .boca img {
                 margin-bottom: 3%;
+                width: 36%;
 
                 &:nth-child(odd) {
                     margin-right: 8%;

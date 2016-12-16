@@ -29,6 +29,7 @@ var Coloso = {
             ["labioInf","labiosCostado", "labioSup", "dientes"]
         ]
     },
+    SELECTORS : ["cinturaSelector", "hombrosSelector", "brazosSelector"],
     svg : null,
 
     grupoSelected : null,
@@ -39,6 +40,23 @@ var Coloso = {
         Coloso.svg = mainSvg.contentDocument || mainSvg.documentElement;
         Coloso.activateGrupos();
         Coloso.activateSubGrupos();
+        Coloso.initSelectors();
+    },
+
+    initSelectors : function() {
+        Coloso.selectorsHideAll();
+    },
+
+    selectorsHideAll : function() {
+        var query = Coloso.SELECTORS.map(function(x) {
+            return "#" + x;
+        }).join(", ");
+        
+        var selectors = Coloso.svg.querySelectorAll( query );
+        for ( var i = 0 ; i < selectors.length ; i++ ) {
+            var child = selectors[i];
+            child.style.opacity = 0;
+        }
     },
 
     activateGrupos : function() {
@@ -49,33 +67,15 @@ var Coloso = {
                 Coloso.grupoSelected = this;
                 Coloso.subgrupoSelected = null;
                 UI.onGrupoSelected();
+
+                Coloso.selectorsHideAll();
+                selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
+                selector.style.opacity = 1;
             };
         }
     },
 
     activateSubGrupos : function() {
-        // $("#coloso #presets img").each( function(i) {
-        //     $(this).click(function() {
-        //         $("#coloso #presets img").removeClass("selected");
-        //         $(this).addClass("selected");
-        //
-        //         switch(Coloso.grupoSelected.id) {
-        //             case "ojo_izquierdo":
-        //             case "ojo_derecho":
-        //             case "boca":
-        //
-        //                 var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][ i ].map(function(x) {
-        //                     return "#" + x;
-        //                 }).join(", ");
-        //
-        //                 Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
-        //                 break;
-        //             default:
-        //                 Coloso.subgrupoSelected = null;
-        //                 break;
-        //         }
-        //     });
-        // });
         $("#coloso .ojos img").each( function(i) {
             $(this).click(function() {
                 $("#coloso #presets img").removeClass("selected");
@@ -92,9 +92,6 @@ var Coloso = {
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
                         break;
-                    // default:
-                    //     Coloso.subgrupoSelected = null;
-                    //     break;
                 }
             });
         });
@@ -111,9 +108,6 @@ var Coloso = {
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
                         break;
-                    // default:
-                    //     Coloso.subgrupoSelected = null;
-                    //     break;
                 }
             });
         });
