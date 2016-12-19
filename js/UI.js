@@ -135,6 +135,9 @@ var UI = {
                 $("#presets").addClass("visible");
                 $("#presets .boca").addClass("visible");
             }
+
+            $("#presets div.visible img:first-child").click();
+
         }
     },
     onFrameChanged: function(i) {
