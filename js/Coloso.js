@@ -156,6 +156,7 @@ var Coloso = {
     unselect: function() {
         Coloso.grupoSelected = null;
         Coloso.subgrupoSelected = null;
+        Coloso.selectorsHideAll();
     },
     setColorsAll: function(obj) {
         var prevSelected = Coloso.grupoSelected;

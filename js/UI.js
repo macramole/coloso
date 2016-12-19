@@ -18,6 +18,8 @@ var UI = {
             $("#presets, #presets > div").removeClass("visible");
 
             $("#coloso object").removeClass("zoom");
+
+            $("#areas .info").text( UI.DEFAULT_AREA );
         });
 
         //setup slider
