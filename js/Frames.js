@@ -19,12 +19,33 @@ var Frames = {
     getFrameObject: function() {
         var obj = {}
         for (var i = 0; i < Coloso.GRUPOS.length; i++) {
-            obj[Coloso.GRUPOS[i]] = 4;
+            switch (Coloso.GRUPOS[i]) {
+                case 'ojo_izquierdo':
+                    for (var k = 0; k < Coloso.SUBGRUPOS['ojo_izquierdo'][1].length; k++) {
+                        obj[Coloso.SUBGRUPOS['ojo_izquierdo'][1][k]] = 4;
+                    }
+                    break;
+                case 'ojo_derecho':
+                    for (var k = 0; k < Coloso.SUBGRUPOS['ojo_derecho'][1].length; k++) {
+                        obj[Coloso.SUBGRUPOS['ojo_derecho'][1][k]] = 4;
+                    }
+                    break;
+                case 'boca':
+                    for (var k = 0; k < Coloso.SUBGRUPOS['boca'][5].length; k++) {
+                        obj[Coloso.SUBGRUPOS['boca'][5][k]] = 4;
+                    }
+                    break;
+                default:
+                    obj[Coloso.GRUPOS[i]] = 4;
+                    break;
+            }
+
         }
+
         return obj;
     },
-    getAllFrames:function(){
-      return Frames.frames;
+    getAllFrames: function() {
+        return Frames.frames;
     },
     //setea los colores del frame actual según el JSON
     setFrame: function(f, onAnim) {
@@ -52,16 +73,27 @@ var Frames = {
         UI.onFrameChanged(Frames.actualFrame);
 
     },
-    //setea el color del frame actual
+    //setea el color del cacho dentro del frame actual
     setColor: function(c) {
+        var color = c;
 
         if (Frames.frames[Frames.actualFrame] === undefined) {
             Frames.frames[Frames.actualFrame] = Frames.getFrameObject();
         }
-
         var grupo = Coloso.grupoSelected.id;
-        var color = c;
-        Frames.frames[Frames.actualFrame][grupo] = color;
+        if (Coloso.subgrupoSelected !== null) {
+            for (var key in Frames.frames[Frames.actualFrame]) {
+                for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
+                    if (Coloso.subgrupoSelected[i].id === key) {
+                        Frames.frames[Frames.actualFrame][key] = color;
+                    }
+                }
+            }
+
+        } else {
+            Frames.frames[Frames.actualFrame][grupo] = color;
+        }
+
 
     },
     deleteFrame: function() {
@@ -77,15 +109,15 @@ var Frames = {
         Frames.setFrame(Frames.actualFrame, false);
     },
     //de array de jsons a json de jsons cuyos keys son valores
-    arrToJSON: function(arr){
-      var obj = {}
-      
-      for(var index in arr){
-        obj[i] = arr[i];
-        console.log(obj['i']);
-      }
-      console.log(obj);
-      return obj;
+    arrToJSON: function(arr) {
+        var obj = {}
+
+        for (var index in arr) {
+            obj[i] = arr[i];
+            console.log(obj['i']);
+        }
+        console.log(obj);
+        return obj;
     }
 
 
