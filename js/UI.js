@@ -114,6 +114,7 @@ var UI = {
                 console.log('result', result);
             });
 
+            alert("Tu animación ha sido enviada !");
         });
 
     },
