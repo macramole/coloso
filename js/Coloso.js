@@ -71,7 +71,10 @@ var Coloso = {
 
                 Coloso.selectorsHideAll();
                 selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
-                selector.style.opacity = 1;
+
+                if ( selector ) {
+                    selector.style.opacity = 1;
+                }
             };
         }
     },
