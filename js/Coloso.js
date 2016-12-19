@@ -1,41 +1,42 @@
 var Coloso = {
-    GRUPOS : ["corazon", "brazos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
-    COLORES : ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D" ],
-    SUBGRUPOS : {
-        "ojo_izquierdo" : [
+    GRUPOS: ["corazon", "brazos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
+    COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
+    SUBGRUPOS: {
+        "ojo_izquierdo": [
             ["ojoIzqSup", "ojoIzqInf"],
             ["ojoIzqSup", "ojoIzqInf", "ojoIzqMedio"],
             ["ojoIzqSup"],
             ["ojoIzqInf"],
             ["ojoIzqMedio"],
-            ["ojoIzqSup","ojoIzqMedio"],
-            ["ojoIzqInf","ojoIzqMedio"]
+            ["ojoIzqSup", "ojoIzqMedio"],
+            ["ojoIzqInf", "ojoIzqMedio"]
         ],
-        "ojo_derecho" : [
+        "ojo_derecho": [
             ["ojoDerSup", "ojoDerInf"],
             ["ojoDerSup", "ojoDerInf", "ojoDerMedio"],
             ["ojoDerSup"],
             ["ojoDerInf"],
             ["ojoDerMedio"],
-            ["ojoDerSup","ojoDerMedio"],
-            ["ojoDerInf","ojoDerMedio"]
+            ["ojoDerSup", "ojoDerMedio"],
+            ["ojoDerInf", "ojoDerMedio"]
         ],
-        "boca" : [
-            ["labioInf","labiosCostado"],
+        "boca": [
+            ["labioInf", "labiosCostado"],
             [],
-            ["labioInf","labiosCostado", "labioSup"],
+            ["labioInf", "labiosCostado", "labioSup"],
             ["dientes"],
             ["labioInf", "labioSup"],
-            ["labioInf","labiosCostado", "labioSup", "dientes"]
+            ["labioInf", "labiosCostado", "labioSup", "dientes"]
         ]
     },
-    SELECTORS : ["cinturaSelector", "hombrosSelector", "brazosSelector"],
-    svg : null,
 
-    grupoSelected : null,
-    subgrupoSelected : null,
+    SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector"],
+    svg: null,
 
-    init : function() {
+    grupoSelected: null,
+    subgrupoSelected: null,
+
+    init: function() {
         var mainSvg = document.getElementById("mainSvg");
         Coloso.svg = mainSvg.contentDocument || mainSvg.documentElement;
         Coloso.activateGrupos();
@@ -43,24 +44,24 @@ var Coloso = {
         Coloso.initSelectors();
     },
 
-    initSelectors : function() {
+    initSelectors: function() {
         Coloso.selectorsHideAll();
     },
 
-    selectorsHideAll : function() {
+    selectorsHideAll: function() {
         var query = Coloso.SELECTORS.map(function(x) {
             return "#" + x;
         }).join(", ");
-        
-        var selectors = Coloso.svg.querySelectorAll( query );
-        for ( var i = 0 ; i < selectors.length ; i++ ) {
+
+        var selectors = Coloso.svg.querySelectorAll(query);
+        for (var i = 0; i < selectors.length; i++) {
             var child = selectors[i];
             child.style.opacity = 0;
         }
     },
 
-    activateGrupos : function() {
-        for ( i in Coloso.GRUPOS ) {
+    activateGrupos: function() {
+        for (i in Coloso.GRUPOS) {
             var grupo = Coloso.svg.querySelector("#" + Coloso.GRUPOS[i]);
             var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
@@ -75,18 +76,19 @@ var Coloso = {
         }
     },
 
-    activateSubGrupos : function() {
-        $("#coloso .ojos img").each( function(i) {
+
+    activateSubGrupos: function() {
+        $("#coloso .ojos img").each(function(i) {
             $(this).click(function() {
                 $("#coloso #presets img").removeClass("selected");
                 $(this).addClass("selected");
 
-                switch(Coloso.grupoSelected.id) {
+                switch (Coloso.grupoSelected.id) {
                     case "ojo_izquierdo":
                     case "ojo_derecho":
                     case "boca":
 
-                        var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][ i ].map(function(x) {
+                        var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
                             return "#" + x;
                         }).join(", ");
 
@@ -95,14 +97,14 @@ var Coloso = {
                 }
             });
         });
-        $("#coloso .boca img").each( function(i) {
+        $("#coloso .boca img").each(function(i) {
             $(this).click(function() {
                 $("#coloso #presets img").removeClass("selected");
                 $(this).addClass("selected");
 
-                switch(Coloso.grupoSelected.id) {
+                switch (Coloso.grupoSelected.id) {
                     case "boca":
-                        var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][ i ].map(function(x) {
+                        var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
                             return "#" + x;
                         }).join(", ");
 
@@ -113,33 +115,33 @@ var Coloso = {
         });
     },
 
-    setColor : function(numColor) {
-        if ( Coloso.grupoSelected == null ) {
+    setColor: function(numColor) {
+        /*if (Coloso.grupoSelected == null) {
             return;
-        }
+        }*/
 
-        var color = Coloso.COLORES[numColor] ;
+        var color = Coloso.COLORES[numColor];
 
-        if ( Coloso.subgrupoSelected == null ) {
-            for ( var i = 0 ; i < Coloso.grupoSelected.children.length ; i++ ) {
+        if (Coloso.subgrupoSelected == null) {
+            for (var i = 0; i < Coloso.grupoSelected.children.length; i++) {
                 var child = Coloso.grupoSelected.children[i];
 
-                if ( child.nodeName == "path" ) {
+                if (child.nodeName == "path") {
                     child.style.stroke = color;
-                } else if ( child.nodeName == "g" ) {
-                    for ( j = 0 ; j < child.children.length ; j++ ) {
+                } else if (child.nodeName == "g") {
+                    for (j = 0; j < child.children.length; j++) {
                         var elem = child.children[j];
                         elem.style.stroke = color;
                     }
                 }
             }
         } else {
-            for ( var i = 0 ; i < Coloso.subgrupoSelected.length ; i++ ) {
+            for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
                 var node = Coloso.subgrupoSelected[i];
-                if ( node.nodeName == "path" ) {
+                if (node.nodeName == "path") {
                     Coloso.subgrupoSelected[i].style.stroke = color;
-                } else if ( node.nodeName == "g" ) {
-                    for ( j = 0 ; j < node.children.length ; j++ ) {
+                } else if (node.nodeName == "g") {
+                    for (j = 0; j < node.children.length; j++) {
                         var child = node.children[j];
                         child.style.stroke = color;
                     }
@@ -148,18 +150,27 @@ var Coloso = {
         }
     },
 
-    unselect : function() {
+    unselect: function() {
         Coloso.grupoSelected = null;
         Coloso.subgrupoSelected = null;
     },
-    setColorsAll: function(obj){
-      var prevSelected = Coloso.grupoSelected;
-      for(var key in obj){
-        Coloso.grupoSelected = Coloso.svg.querySelector("#" + key);
-        Coloso.setColor(obj[key]);
+    setColorsAll: function(obj) {
+        var prevSelected = Coloso.grupoSelected;
+        var prevSubSelected = Coloso.subgrupoSelected;
+        for (var key in obj) {
+            if (Coloso.GRUPOS.indexOf(key) == -1) {
+                Coloso.grupoSelected = null;
+                Coloso.subgrupoSelected = Coloso.svg.querySelectorAll("#" + key);
+            } else {
+                Coloso.subgrupoSelected = null;
+                Coloso.grupoSelected = Coloso.svg.querySelector("#" + key);
+            }
 
-      }
-      Coloso.grupoSelected = prevSelected;
+            Coloso.setColor(obj[key]);
+        }
+
+        Coloso.grupoSelected = prevSelected;
+        Coloso.subgrupoSelected = prevSubSelected;
 
     }
 }

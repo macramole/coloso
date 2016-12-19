@@ -80,7 +80,6 @@ var UI = {
                 $(this).attr("data-play", "0");
                 $(this).html(UI.PLAY_TEXT);
 
-
             }
 
         });
