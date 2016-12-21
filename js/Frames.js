@@ -102,7 +102,7 @@ var Frames = {
 
     },
     copyFrame: function() {
-        Object.assign(Frames.frameToCopy, Frames.frames[Frames.actualFrame]);
+        Frames.frameToCopy =  Frames.frames[Frames.actualFrame];
     },
     pasteFrame: function() {
         var tempFrame = {};
