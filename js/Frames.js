@@ -105,7 +105,9 @@ var Frames = {
         Object.assign(Frames.frameToCopy, Frames.frames[Frames.actualFrame]);
     },
     pasteFrame: function() {
-        Frames.frames[Frames.actualFrame] = Frames.frameToCopy;
+        var tempFrame = {};
+        Object.assign(tempFrame,Frames.frameToCopy);
+        Frames.frames[Frames.actualFrame] = tempFrame;
         Frames.setFrame(Frames.actualFrame, false);
     },
     //de array de jsons a json de jsons cuyos keys son valores
