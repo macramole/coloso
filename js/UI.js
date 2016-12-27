@@ -2,6 +2,7 @@ var UI = {
     DEFAULT_AREA: "Seleccionar área",
     PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
+    ENVIAR_URL : "data.php",
 
     init: function() {
         UI.initColores();
@@ -96,8 +97,7 @@ var UI = {
         });
         $("#animation #btnEnviar").click(function() {
             var data = Frames.getAllFrames();
-            var url = "http://localhost:5000/animacion"
-            $.postJSON = function(url, data, success, args) {
+            $.postJSON = function( url, data, success, args) {
                 args = $.extend({
                     url: url,
                     type: 'POST',
@@ -110,7 +110,7 @@ var UI = {
                 return $.ajax(args);
             };
 
-            $.postJSON(url, data, function(result) {
+            $.postJSON(UI.ENVIAR_URL, data, function(result) {
                 console.log('result', result);
             });
 
