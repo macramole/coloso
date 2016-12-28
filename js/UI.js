@@ -8,6 +8,7 @@ var UI = {
         UI.initColores();
         UI.initFrames();
         UI.initButtons();
+        UI.initIOsFix();
 
         //setup boton cerrar zoom a cabeza
         $("#btnCerrar").click(function() {
@@ -31,6 +32,17 @@ var UI = {
             }
 
         });
+
+
+    },
+
+    initIOsFix : function() {
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+            $("#slideVelocidad").removeClass("normal");
+            $("#slideVelocidad").addClass("ios");
+            // alert("ya");
+            // setTimeout(function() { window.scrollTo(0, 1) }, 100);
+        }
     },
 
     initColores: function() {

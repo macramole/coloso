@@ -21,7 +21,7 @@ h1 {
   font-size: 3em;
   line-height: 0.7em;
   letter-spacing: -4px;
-  padding-top: 0.25em;
+  padding-top: 14px;
   margin-bottom: -2px;
 }
 p {
@@ -49,7 +49,7 @@ p {
   float: right;
   width: 20%;
   text-align: right;
-  padding: 1.25em 1% 0 0;
+  padding: 3% 1% 0 0;
   box-sizing: border-box;
 }
 #mainWrapper #title .logo img {
@@ -111,11 +111,7 @@ p {
   margin-right: 0;
 }
 #mainWrapper #coloso #colores li.no {
-  background: #d9d9d9 !important;
-}
-#mainWrapper #coloso #colores li.no img {
-  width: 115%;
-  height: 103%;
+  background: url("../image/no.svg") #d9d9d9 !important;
 }
 #mainWrapper #coloso #colores.visible {
   visibility: visible;
@@ -281,23 +277,23 @@ button span {
   display: inline-block;
   margin-top: -7px;
 }
-input[type=range] {
+input[type=range].normal {
   -webkit-appearance: none;
   width: 100%;
   height: 50%;
   padding: 0;
   margin: 0;
 }
-input[type=range]:focus {
+input[type=range].normal:focus {
   outline: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type=range].normal::-webkit-slider-runnable-track {
   width: 100%;
   height: 100%;
   cursor: pointer;
   background: #00c6ff;
 }
-input[type=range]::-webkit-slider-thumb {
+input[type=range].normal::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 100%;
   width: 21%;
@@ -306,18 +302,38 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 0;
   border: none;
 }
-input[type=range]::-moz-range-track {
+input[type=range].normal::-moz-range-track {
   width: 100%;
   height: 100%;
   cursor: pointer;
   background: #00c6ff;
 }
-input[type=range]::-moz-range-thumb {
+input[type=range].normal::-moz-range-thumb {
   height: 100%;
   width: 21%;
   background: #000;
   cursor: pointer;
   border-radius: 0;
   border: none;
+}
+input[type=range].ios {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}
+input[type=range].ios:focus {
+  outline: none;
+}
+input[type=range].ios::-webkit-slider-runnable-track {
+  width: 100%;
+  cursor: pointer;
+  background: #00c6ff;
+}
+input[type=range].ios::-webkit-slider-thumb {
+  min-width: 30px;
+  min-height: 30px;
+  background: #000;
 }
 /*# sourceMappingURL=coloso.css.map */
