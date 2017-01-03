@@ -79,8 +79,8 @@ p {
 }
 #mainWrapper #coloso #btnCerrar {
   position: absolute;
-  top: 20px;
-  left: 0;
+  top: 13px;
+  right: 6px;
   cursor: pointer;
   opacity: 0;
   width: 8%;
@@ -118,13 +118,16 @@ p {
 }
 #mainWrapper #coloso #presets {
   background-color: #363636;
-  height: 29%;
+  height: 27%;
   position: absolute;
   bottom: 17%;
   left: 0;
   width: 100%;
-  padding: 5% 0 2%;
+  padding: 3% 0 4%;
   visibility: hidden;
+}
+#mainWrapper #coloso #presets .ojos {
+  padding-top: 2%;
 }
 #mainWrapper #coloso #presets > div {
   width: 80%;
@@ -138,13 +141,14 @@ p {
 #mainWrapper #coloso #presets img {
   display: inline;
   cursor: pointer;
+  opacity: 0.3;
 }
 #mainWrapper #coloso #presets img:first-child,
 #mainWrapper #coloso #presets img.nomargin {
   margin-left: 0;
 }
 #mainWrapper #coloso #presets img.selected {
-  outline: 1px solid #f00;
+  opacity: 1 !important;
 }
 #mainWrapper #coloso #presets .ojos img {
   margin-left: 6%;
@@ -164,9 +168,9 @@ p {
   height: 5%;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.6em;
   border-top: 2px solid #525252;
-  padding-top: 10px;
+  padding-top: 7px;
   box-sizing: border-box;
 }
 #mainWrapper #areas span.flecha {
@@ -259,6 +263,7 @@ p {
 }
 #mainWrapper #animation #velocityAndSend #enviar button {
   background: #00c6ff;
+  color: #000;
 }
 button {
   color: #fff;
