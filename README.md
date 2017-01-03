@@ -9,7 +9,7 @@
 - que se pinte el primer color (**GrBr**)
 - que se tachen los no blanco (**Totó**)
 - menos opacidad para frames no hechos ([hay screenshot](image/screenshot_opacidad.png)) (**Totó**)
-- que la estrella no se zoom (**GrBr**)
+- ~~que la estrella no se zoom (**GrBr**)~~
 - Background con patrón (**DOMA**)
 - Pantalla de mensajes (**GrBr**)
     - preparar front
