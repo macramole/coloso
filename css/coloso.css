@@ -63,6 +63,8 @@ p {
   height: 65%;
   position: relative;
   overflow: hidden;
+  background: url("../image/estrellas.svg");
+  background-size: cover;
 }
 #mainWrapper #coloso object {
   height: 100%;
