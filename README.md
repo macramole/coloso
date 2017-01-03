@@ -11,7 +11,7 @@
 - menos opacidad para frames no hechos ([hay screenshot](image/screenshot_opacidad.png)) (**Totó**)
 - ~~que la estrella no se zoom (**GrBr**)~~
 - Background con patrón (**DOMA**)
-- Arreglar el tachado (**GrBr**)
+- ~~Arreglar el tachado (**GrBr**)~~
 - Pantalla de mensajes (**GrBr**)
     - preparar front
     - formulario de envio de animación
