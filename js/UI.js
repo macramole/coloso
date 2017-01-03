@@ -107,28 +107,39 @@ var UI = {
         $("#animation #btnPaste").click(function() {
             Frames.pasteFrame();
         });
-        $("#animation #btnEnviar").click(function() {
-            var data = Frames.getAllFrames();
-            $.postJSON = function( url, data, success, args) {
-                args = $.extend({
-                    url: url,
-                    type: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    async: true,
-                    success: success
-                }, args);
-                return $.ajax(args);
-            };
 
-            $.postJSON(UI.ENVIAR_URL, data, function(result) {
-                console.log('result', result);
-            });
-
-            alert("Tu animación ha sido enviada !");
+        $("#btnComenzar").click(function() {
+            $("#overlay, #overlay .hola").removeClass("active");
         });
 
+        $("#btnMostrarEnviar").click(function() {
+            $("#overlay, #overlay .enviar").addClass("active");
+        });
+        $("#btnEnviar").click(function() {
+            var data = Frames.getAllFrames();
+
+            $.ajax({
+                url: UI.ENVIAR_URL,
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result);
+
+                    $("#overlay .enviar").removeClass("active");
+                    $("#overlay .enviado").addClass("active");
+                },
+                error : function() {
+                    alert("error");
+                }
+            });
+        });
+
+        $("#btnNuevaAnimacion").click(function() {
+            $("#overlay, #overlay .enviado").removeClass("active");
+            //TODO que vuelva a empezar;
+        });
     },
 
     // Evento que se llama cuando se clickea un grupo

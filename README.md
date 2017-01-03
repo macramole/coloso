@@ -14,10 +14,10 @@
 - Background con patrón (**DOMA**)
 - ~~Arreglar el tachado (**GrBr**)~~
 - Pantalla de mensajes (**GrBr**)
-    - preparar front
-    - formulario de envio de animación
+    - ~~preparar front~~
+    - ~~formulario de envio de animación~~
     - countdown
-        - front
+        - ~~front~~
         - server
             - chequear cuantos archivos hay antes y estimar
             - fijarse el archivo "procesando.txt" para ver si el servidor esta procesando
