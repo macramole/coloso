@@ -151,8 +151,10 @@ var UI = {
             }
 
             $("#presets div.visible img:first-child").click();
-
         }
+
+        // chequeo si no hay nada prendido entonces que prenda del primer color
+        Coloso.setColorIfApagado();
     },
     onFrameChanged: function(i) {
         $("#animation .frame").removeClass("selected");

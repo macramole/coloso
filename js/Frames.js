@@ -96,6 +96,10 @@ var Frames = {
 
 
     },
+    //Devuelve el color actual de una parte del coloso (key)
+    getColor : function( key ) {
+        return Frames.frames[Frames.actualFrame][key];
+    },
     deleteFrame: function() {
         delete Frames.frames[Frames.actualFrame];
         Frames.setFrame(Frames.actualFrame, false);
