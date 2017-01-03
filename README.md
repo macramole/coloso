@@ -2,6 +2,7 @@
 
 ### TODO
 
+- ~~agrego el TODO al readme~~
 - agregar manos
 - contar la cantidad de frames vacios <= 4 consecutivos
 - borrar el grupo cuando se pinta un subgrupo
