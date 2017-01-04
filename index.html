@@ -12,6 +12,32 @@
         <!-- <img src="estuctura_3.svg" /> -->
         <div id="mainWrapper">
             <div id="content">
+                <div id="overlay" class="active">
+                    <div class="hola active">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Vivamus bibendum magna eget nunc scelerisque facilisis. Aenean malesuada in dolor eu condimentum. Aenean et fermentum nunc.
+                            Vestibulum quis orci condimentum, rutrum neque ac, euismod elit. Phasellus sodales, massa sed vestibulum consequat, dui dolor placerat sapien,
+                            cursus laoreet nisl elit ut sapien. Integer sed pellentesque metus. In placerat ligula non erat venenatis, a lacinia ante posuere.
+                        </p>
+                        <button id="btnComenzar">Comenzar</button>
+                    </div>
+                    <div class="enviar">
+                        <form id="frmEnviar">
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" id="txtNombre" />
+                            <label>Email:</label>
+                            <input type="text" name="email" id="txtEmail" />
+                            <button id="btnEnviar" type="button" >Enviar</button>
+                        </form>
+                    </div>
+                    <div class="enviado">
+                        <p>Tu animación ha sido enviada !</p>
+                        <p>Será ejecutada en:</p>
+                        <p class="countdown">00:03:00</p>
+                        <button id="btnNuevaAnimacion">Hacer otra</button>
+                    </div>
+                </div>
                 <div id="title">
                     <div class="info">
                         <h1>COLOSO</h1>
@@ -25,7 +51,7 @@
                 </div>
                 <div id="coloso">
                     <img id="btnCerrar" src="image/cerrar.png" />
-                    <object id="mainSvg" data="image/estructura.svg?a=1" type="image/svg+xml"></object>
+                    <object id="mainSvg" data="image/estructura.svg?a=2" type="image/svg+xml"></object>
                     <div id="presets">
                         <div class="ojos">
                             <img src="image/ojos/1.png" />
@@ -91,7 +117,7 @@
                             <span>VELOCIDAD</span>
                         </div>
                         <div id="enviar">
-                            <button id="btnEnviar">ENVIAR</button>
+                            <button id="btnMostrarEnviar">ENVIAR</button>
                         </div>
                     </div>
                 </div>

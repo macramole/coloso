@@ -92,14 +92,65 @@ p {
     #content {
         margin: 0 auto;
         overflow: hidden;
+        position: relative;
+
+        #overlay {
+            position: absolute;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10000;
+            height: 100%;
+            width: 100%;
+            color: white;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+
+            > div {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+
+                &.enviar {
+                    label, input, button {
+                        display: block;
+                        text-align: left;
+                    }
+
+                    input {
+                        width: 100%;
+                        margin-bottom: 1em;
+                    }
+
+                    button {
+                        float: right;
+                    }
+                }
+            }
+
+
+
+            button {
+                background-color: blue;
+                text-transform: uppercase;
+                font-size: 1em;
+                margin-top: 1em;
+            }
+        }
     }
 
     #coloso {
         height: 65%;
         position: relative;
         overflow: hidden;
-
-
+        background: url(../image/estrellas.svg);
+        background-size: cover;
 
         object {
             height: 100%;
@@ -154,7 +205,12 @@ p {
                 }
 
                 &.no {
-                    background: url(../image/no.svg) #d9d9d9 !important;
+                    // background: url(../image/no.svg) #d9d9d9 !important;
+                    background: #d9d9d9 !important;
+
+                    img {
+                        width: 110%;
+                    }
                 }
             }
 

@@ -107,33 +107,40 @@ var UI = {
         $("#animation #btnPaste").click(function() {
             Frames.pasteFrame();
         });
+        $("#btnComenzar").click(function() {
+            $("#overlay, #overlay .hola").removeClass("active");
+        });
+
+        $("#btnMostrarEnviar").click(function() {
+            $("#overlay, #overlay .enviar").addClass("active");
+        });
         $("#animation #btnEnviar").click(function() {
             if (!Frames.isFrameObjectValid()) {
                 alert('Tenés muchos cuadros vacíos!')
             } else {
                 var data = Frames.getAllFrames();
-                $.postJSON = function(url, data, success, args) {
-                    args = $.extend({
-                        url: url,
-                        type: 'POST',
-                        data: JSON.stringify(data),
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        async: true,
-                        success: success
-                    }, args);
-                    return $.ajax(args);
-                };
+                $.ajax({
+                    url: UI.ENVIAR_URL,
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(result) {
+                        console.log(result);
 
-                $.postJSON(UI.ENVIAR_URL, data, function(result) {
-                    console.log('result', result);
+                        $("#overlay .enviar").removeClass("active");
+                        $("#overlay .enviado").addClass("active");
+                    },
+                    error: function() {
+                        alert("error");
+                    }
                 });
-
-                alert("Tu animación ha sido enviada !");
             }
-
         });
-
+        $("#btnNuevaAnimacion").click(function() {
+            $("#overlay, #overlay .enviado").removeClass("active");
+            //TODO que vuelva a empezar;
+        });
     },
 
     // Evento que se llama cuando se clickea un grupo
@@ -156,8 +163,10 @@ var UI = {
             }
 
             $("#presets div.visible img:first-child").click();
-
         }
+
+        // chequeo si no hay nada prendido entonces que prenda del primer color
+        Coloso.setColorIfApagado();
     },
     onFrameChanged: function(i) {
         $("#animation .frame").removeClass("selected");

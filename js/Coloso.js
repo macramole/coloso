@@ -1,6 +1,7 @@
 var Coloso = {
     GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
+    COLOR_APAGADO : 4,
     SUBGRUPOS: {
         "ojo_izquierdo": [
             ["ojoIzqSup", "ojoIzqInf"],
@@ -69,12 +70,15 @@ var Coloso = {
                 Coloso.subgrupoSelected = null;
                 UI.onGrupoSelected();
 
+                //Selectores
                 Coloso.selectorsHideAll();
                 selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
-
                 if ( selector ) {
                     selector.style.opacity = 1;
                 }
+
+                // Coloso.setColorIfApagado();
+
             };
         }
     },
@@ -89,7 +93,6 @@ var Coloso = {
                 switch (Coloso.grupoSelected.id) {
                     case "ojo_izquierdo":
                     case "ojo_derecho":
-                    case "boca":
 
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
                             return "#" + x;
@@ -116,6 +119,28 @@ var Coloso = {
                 }
             });
         });
+    },
+
+    ////si esta apagado que lo pinte del primer color. esto se llama desde UI
+    setColorIfApagado : function() {
+        //si NO elegió un subgrupo se prende directo si estaba apagado
+        if ( Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
+            if ( Frames.getColor( Coloso.grupoSelected.id ) == Coloso.COLOR_APAGADO )  {
+                Coloso.setColor(0);
+            }
+        } else {
+            var keysPrimerPreset = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][0];
+            var todosApagados = true;
+            for ( var i = 0 ; i < keysPrimerPreset.length ; i++ ) {
+                if ( Frames.getColor( keysPrimerPreset[i] ) != Coloso.COLOR_APAGADO ) {
+                    todosApagados = false;
+                    break;
+                }
+            }
+            if ( todosApagados ) {
+                Coloso.setColor(0);
+            }
+        }
     },
 
     setColor: function(numColor) {

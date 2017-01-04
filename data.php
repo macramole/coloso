@@ -10,7 +10,7 @@ $json = file_get_contents('php://input');
 $file = $dir .  date('Ymd-His') . ".json";
 
 file_put_contents($file, $json);
-echo "ok";
+echo json_encode(array("ok" => true));
 
 
 // $FILE = "results.json";

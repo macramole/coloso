@@ -58,11 +58,54 @@ p {
 #mainWrapper #content {
   margin: 0 auto;
   overflow: hidden;
+  position: relative;
+}
+#mainWrapper #content #overlay {
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 10000;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  display: none;
+}
+#mainWrapper #content #overlay.active {
+  display: block;
+}
+#mainWrapper #content #overlay > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+#mainWrapper #content #overlay > div.active {
+  display: block;
+}
+#mainWrapper #content #overlay > div.enviar label,
+#mainWrapper #content #overlay > div.enviar input,
+#mainWrapper #content #overlay > div.enviar button {
+  display: block;
+  text-align: left;
+}
+#mainWrapper #content #overlay > div.enviar input {
+  width: 100%;
+  margin-bottom: 1em;
+}
+#mainWrapper #content #overlay > div.enviar button {
+  float: right;
+}
+#mainWrapper #content #overlay button {
+  background-color: #00f;
+  text-transform: uppercase;
+  font-size: 1em;
+  margin-top: 1em;
 }
 #mainWrapper #coloso {
   height: 65%;
   position: relative;
   overflow: hidden;
+  background: url("../image/estrellas.svg");
+  background-size: cover;
 }
 #mainWrapper #coloso object {
   height: 100%;
@@ -111,7 +154,10 @@ p {
   margin-right: 0;
 }
 #mainWrapper #coloso #colores li.no {
-  background: url("../image/no.svg") #d9d9d9 !important;
+  background: #d9d9d9 !important;
+}
+#mainWrapper #coloso #colores li.no img {
+  width: 110%;
 }
 #mainWrapper #coloso #colores.visible {
   visibility: visible;
