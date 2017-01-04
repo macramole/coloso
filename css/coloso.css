@@ -252,6 +252,7 @@ p {
   width: 7%;
   height: 100%;
   background-color: #878787;
+  opacity: 0.4;
 }
 #mainWrapper #animation .framesWrapper li.frame .circulo {
   border: 1px solid #000;
@@ -268,6 +269,9 @@ p {
 #mainWrapper #animation .framesWrapper li.frame.selected .circulo {
   background-color: #ff00ab;
   border: 1px solid #ff00ab;
+}
+#mainWrapper #animation .framesWrapper li.frame.setted {
+  opacity: 1;
 }
 #mainWrapper #animation #buttons {
   margin-top: 0.5em;

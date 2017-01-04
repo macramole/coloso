@@ -51,6 +51,8 @@ var UI = {
             $(this).click(function() {
                 Coloso.setColor(i);
                 Frames.setColor(i);
+                UI.onFrameSetted();
+
             })
         });
 
@@ -173,5 +175,12 @@ var UI = {
         $("#animation .frame").removeClass("selected");
         $("#animation .frame").eq(i).addClass("selected");
 
+    },
+    onFrameSetted: function(){
+      var idx = $("#animation .frame.selected").index();
+      for (var i = 0; i < idx; i++) {
+        //hay una clase .setted pero no me deja hacer .addClass(.setted) sobre el elemento :(
+        $("#animation .frame")[i].style = "opacity: 1;"
+      }
     }
 }

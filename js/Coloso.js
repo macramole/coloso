@@ -128,6 +128,7 @@ var Coloso = {
             if (Frames.getColor(Coloso.grupoSelected.id) == Coloso.COLOR_APAGADO) {
                 Coloso.setColor(0);
                 Frames.setColor(0);
+                UI.onFrameSetted();
             }
         } else {
             var keysPrimerPreset = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][0];
@@ -141,6 +142,7 @@ var Coloso = {
             if (todosApagados) {
                 Coloso.setColor(0);
                 Frames.setColor(0);
+                UI.onFrameSetted();
             }
         }
     },
@@ -166,18 +168,21 @@ var Coloso = {
                 }
             }
         } else {
-            var prevSubGrupoSelected = Coloso.subgrupoSelected;//guardo el grupoSeleccionado para después colorearlo
-            var idxBiggerSubGroup;//Que subgrupo tiene todas las secciones pintadas
-            if (Coloso.grupoSelected.id === "boca") {
-                idxBiggerSubGroup = 5
-            } else {
-                idxBiggerSubGroup = 1
+            var prevSubGrupoSelected = Coloso.subgrupoSelected; //guardo el grupoSeleccionado para después colorearlo
+            if (Coloso.grupoSelected !== null) {
+                var idxBiggerSubGroup; //Que subgrupo tiene todas las secciones pintadas
+                if (Coloso.grupoSelected.id === "boca") {
+                    idxBiggerSubGroup = 5
+                } else {
+                    idxBiggerSubGroup = 1
+                }
+                for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup].length; i++) {
+                    var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup][i];
+                    Coloso.subgrupoSelected = Coloso.svg.querySelectorAll("#" + seccion);
+                    Coloso.setSubGroupColor(Coloso.COLORES[4]);
+                }
             }
-            for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup].length; i++) {
-                var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup][i];
-                Coloso.subgrupoSelected = Coloso.svg.querySelectorAll("#" + seccion);
-                Coloso.setSubGroupColor(Coloso.COLORES[4]);
-            }
+
 
 
             Coloso.subgrupoSelected = prevSubGrupoSelected;
