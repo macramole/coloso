@@ -1,7 +1,7 @@
 var Coloso = {
     GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
-    COLOR_APAGADO : 4,
+    COLOR_APAGADO: 4,
     SUBGRUPOS: {
         "ojo_izquierdo": [
             ["ojoIzqSup", "ojoIzqInf"],
@@ -31,7 +31,7 @@ var Coloso = {
         ]
     },
 
-    SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector","manosSelector"],
+    SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector", "manosSelector"],
     svg: null,
 
     grupoSelected: null,
@@ -73,7 +73,7 @@ var Coloso = {
                 //Selectores
                 Coloso.selectorsHideAll();
                 selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
-                if ( selector ) {
+                if (selector) {
                     selector.style.opacity = 1;
                 }
 
@@ -122,23 +122,23 @@ var Coloso = {
     },
 
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
-    setColorIfApagado : function() {
+    setColorIfApagado: function() {
         //si NO elegió un subgrupo se prende directo si estaba apagado
-        if ( Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
-            if ( Frames.getColor( Coloso.grupoSelected.id ) == Coloso.COLOR_APAGADO )  {
+        if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
+            if (Frames.getColor(Coloso.grupoSelected.id) == Coloso.COLOR_APAGADO) {
                 Coloso.setColor(0);
                 Frames.setColor(0);
             }
         } else {
             var keysPrimerPreset = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][0];
             var todosApagados = true;
-            for ( var i = 0 ; i < keysPrimerPreset.length ; i++ ) {
-                if ( Frames.getColor( keysPrimerPreset[i] ) != Coloso.COLOR_APAGADO ) {
+            for (var i = 0; i < keysPrimerPreset.length; i++) {
+                if (Frames.getColor(keysPrimerPreset[i]) != Coloso.COLOR_APAGADO) {
                     todosApagados = false;
                     break;
                 }
             }
-            if ( todosApagados ) {
+            if (todosApagados) {
                 Coloso.setColor(0);
                 Frames.setColor(0);
             }
@@ -166,20 +166,39 @@ var Coloso = {
                 }
             }
         } else {
-            for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
-                var node = Coloso.subgrupoSelected[i];
-                if (node.nodeName == "path") {
-                    Coloso.subgrupoSelected[i].style.stroke = color;
-                } else if (node.nodeName == "g") {
-                    for (j = 0; j < node.children.length; j++) {
-                        var child = node.children[j];
-                        child.style.stroke = color;
-                    }
+            var prevSubGrupoSelected = Coloso.subgrupoSelected;//guardo el grupoSeleccionado para después colorearlo
+            var idxBiggerSubGroup;//Que subgrupo tiene todas las secciones pintadas
+            if (Coloso.grupoSelected.id === "boca") {
+                idxBiggerSubGroup = 5
+            } else {
+                idxBiggerSubGroup = 1
+            }
+            for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup].length; i++) {
+                var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup][i];
+                Coloso.subgrupoSelected = Coloso.svg.querySelectorAll("#" + seccion);
+                Coloso.setSubGroupColor(Coloso.COLORES[4]);
+            }
+
+
+            Coloso.subgrupoSelected = prevSubGrupoSelected;
+            Coloso.setSubGroupColor(color);
+        }
+    },
+    //para setear color de Subgrupo. En una función porque ahora lo necesito para resetear colores al cambiar de subgrupo
+    setSubGroupColor: function(color) {
+        for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
+            var node = Coloso.subgrupoSelected[i];
+            if (node.nodeName == "path") {
+                Coloso.subgrupoSelected[i].style.stroke = color;
+            } else if (node.nodeName == "g") {
+                for (j = 0; j < node.children.length; j++) {
+                    var child = node.children[j];
+                    child.style.stroke = color;
                 }
             }
         }
-    },
 
+    },
     unselect: function() {
         Coloso.grupoSelected = null;
         Coloso.subgrupoSelected = null;
