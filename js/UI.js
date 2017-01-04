@@ -112,30 +112,31 @@ var UI = {
         });
 
         $("#btnMostrarEnviar").click(function() {
-            $("#overlay, #overlay .enviar").addClass("active");
-        });
-        $("#animation #btnEnviar").click(function() {
             if (!Frames.isFrameObjectValid()) {
                 alert('Tenés muchos cuadros vacíos!')
             } else {
-                var data = Frames.getAllFrames();
-                $.ajax({
-                    url: UI.ENVIAR_URL,
-                    type: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: function(result) {
-                        console.log(result);
-
-                        $("#overlay .enviar").removeClass("active");
-                        $("#overlay .enviado").addClass("active");
-                    },
-                    error: function() {
-                        alert("error");
-                    }
-                });
+                $("#overlay, #overlay .enviar").addClass("active");
             }
+        });
+        $("#btnEnviar").click(function() {
+            var data = Frames.getAllFrames();
+            $.ajax({
+                url: UI.ENVIAR_URL,
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result);
+
+                    $("#overlay .enviar").removeClass("active");
+                    $("#overlay .enviado").addClass("active");
+                },
+                error: function() {
+                    alert("error");
+                }
+            });
+
         });
         $("#btnNuevaAnimacion").click(function() {
             $("#overlay, #overlay .enviado").removeClass("active");
