@@ -127,6 +127,7 @@ var Coloso = {
         if ( Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
             if ( Frames.getColor( Coloso.grupoSelected.id ) == Coloso.COLOR_APAGADO )  {
                 Coloso.setColor(0);
+                Frames.setColor(0);
             }
         } else {
             var keysPrimerPreset = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][0];
@@ -139,6 +140,7 @@ var Coloso = {
             }
             if ( todosApagados ) {
                 Coloso.setColor(0);
+                Frames.setColor(0);
             }
         }
     },
