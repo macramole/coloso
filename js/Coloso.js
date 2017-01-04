@@ -1,5 +1,5 @@
 var Coloso = {
-    GRUPOS: ["corazon", "brazos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
+    GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
     SUBGRUPOS: {
         "ojo_izquierdo": [
@@ -30,7 +30,7 @@ var Coloso = {
         ]
     },
 
-    SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector"],
+    SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector","manosSelector"],
     svg: null,
 
     grupoSelected: null,

@@ -2,7 +2,7 @@ var UI = {
     DEFAULT_AREA: "Seleccionar área",
     PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
-    ENVIAR_URL : "data.php",
+    ENVIAR_URL: "data.php",
 
     init: function() {
         UI.initColores();
@@ -21,7 +21,7 @@ var UI = {
 
             $("#coloso object").removeClass("zoom");
 
-            $("#areas .info").text( UI.DEFAULT_AREA );
+            $("#areas .info").text(UI.DEFAULT_AREA);
         });
 
         //setup slider
@@ -36,7 +36,7 @@ var UI = {
 
     },
 
-    initIOsFix : function() {
+    initIOsFix: function() {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
             $("#slideVelocidad").removeClass("normal");
             $("#slideVelocidad").addClass("ios");
@@ -108,25 +108,30 @@ var UI = {
             Frames.pasteFrame();
         });
         $("#animation #btnEnviar").click(function() {
-            var data = Frames.getAllFrames();
-            $.postJSON = function( url, data, success, args) {
-                args = $.extend({
-                    url: url,
-                    type: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    async: true,
-                    success: success
-                }, args);
-                return $.ajax(args);
-            };
+            if (!Frames.isFrameObjectValid()) {
+                alert('Tenés muchos cuadros vacíos!')
+            } else {
+                var data = Frames.getAllFrames();
+                $.postJSON = function(url, data, success, args) {
+                    args = $.extend({
+                        url: url,
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        async: true,
+                        success: success
+                    }, args);
+                    return $.ajax(args);
+                };
 
-            $.postJSON(UI.ENVIAR_URL, data, function(result) {
-                console.log('result', result);
-            });
+                $.postJSON(UI.ENVIAR_URL, data, function(result) {
+                    console.log('result', result);
+                });
 
-            alert("Tu animación ha sido enviada !");
+                alert("Tu animación ha sido enviada !");
+            }
+
         });
 
     },

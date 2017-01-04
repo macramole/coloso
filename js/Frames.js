@@ -102,25 +102,40 @@ var Frames = {
 
     },
     copyFrame: function() {
-        Frames.frameToCopy =  Frames.frames[Frames.actualFrame];
+        Frames.frameToCopy = Frames.frames[Frames.actualFrame];
     },
     pasteFrame: function() {
         var tempFrame = {};
-        Object.assign(tempFrame,Frames.frameToCopy);
+        Object.assign(tempFrame, Frames.frameToCopy);
         Frames.frames[Frames.actualFrame] = tempFrame;
         Frames.setFrame(Frames.actualFrame, false);
     },
-    //de array de jsons a json de jsons cuyos keys son valores
-    arrToJSON: function(arr) {
-        var obj = {}
-
-        for (var index in arr) {
-            obj[i] = arr[i];
-            console.log(obj['i']);
+    isFrameEmpty: function(frame) {
+        for (var key in frame) {
+            if (frame[key] !== 4) { //si ya hay uno coloreado
+                return false;
+            }
         }
-        console.log(obj);
-        return obj;
-    }
+        return true;
+    },
+    isFrameObjectValid: function() { //empty = invalid
+        var count = 0;
+        if (Frames.frames.length > 1) {
+            for (var i = 0; i < Frames.frames.length; i++) {
+                if (count >= 4) {
+                    return false;
+                }
+                if (Frames.isFrameEmpty(Frames.frames[i])) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
 
+    }
 
 }
