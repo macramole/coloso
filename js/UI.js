@@ -3,6 +3,7 @@ var UI = {
     PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
     ENVIAR_URL: "data.php",
+    COUNTDOWN : false,
 
     init: function() {
         UI.initColores();
@@ -10,19 +11,7 @@ var UI = {
         UI.initButtons();
         UI.initIOsFix();
 
-        //setup boton cerrar zoom a cabeza
-        $("#btnCerrar").click(function() {
 
-            Coloso.unselect();
-
-            $("#colores").removeClass("visible");
-            $("#btnCerrar").removeClass("visible");
-            $("#presets, #presets > div").removeClass("visible");
-
-            $("#coloso object").removeClass("zoom");
-
-            $("#areas .info").text(UI.DEFAULT_AREA);
-        });
 
         //setup slider
         $("#slideVelocidad").bind('input', function() {
@@ -40,8 +29,6 @@ var UI = {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
             $("#slideVelocidad").removeClass("normal");
             $("#slideVelocidad").addClass("ios");
-            // alert("ya");
-            // setTimeout(function() { window.scrollTo(0, 1) }, 100);
         }
     },
 
@@ -133,9 +120,12 @@ var UI = {
 
                     $("#overlay .enviar").removeClass("active");
                     $("#overlay .enviado").addClass("active");
+
+                    UI.COUNTDOWN = result.processing;
+                    UI.onEnviado();
                 },
                 error: function() {
-                    alert("error");
+                    alert("Hubo un error enviando la animación al servidor, por favor, inténtelo más tarde.");
                 }
             });
 
@@ -144,6 +134,34 @@ var UI = {
             $("#overlay, #overlay .enviado").removeClass("active");
             //TODO que vuelva a empezar;
         });
+
+        //setup boton cerrar zoom a cabeza
+        $("#btnCerrar").click(function() {
+
+            Coloso.unselect();
+
+            $("#colores").removeClass("visible");
+            $("#btnCerrar").removeClass("visible");
+            $("#presets, #presets > div").removeClass("visible");
+
+            $("#coloso object").removeClass("zoom");
+
+            $("#areas .info").text(UI.DEFAULT_AREA);
+        });
+    },
+
+    onEnviado : function() {
+        if ( UI.COUNTDOWN ) {
+            $("#overlay .enviado .countdown").addClass("active");
+            $("#overlay .enviado .nocountdown").removeClass("active");
+
+            $("#overlay .enviado .countdown .hour").text( UI.COUNTDOWN.hour );
+            $("#overlay .enviado .countdown .min").text( UI.COUNTDOWN.min );
+            $("#overlay .enviado .countdown .sec").text( UI.COUNTDOWN.sec );
+        } else {
+            $("#overlay .enviado .nocountdown").addClass("active");
+            $("#overlay .enviado .countdown").removeClass("active");
+        }
     },
 
     // Evento que se llama cuando se clickea un grupo
@@ -165,6 +183,14 @@ var UI = {
                 $("#presets .boca").addClass("visible");
             }
 
+            $("#presets div.visible img:first-child").click();
+        }
+
+        if ( Coloso.grupoSelected.id == "corazon" ) {
+            $("#presets, #presets > div").removeClass("visible");
+            $("#coloso #presets img").removeClass("selected");
+            $("#presets").addClass("visible");
+            $("#presets .corazon").addClass("visible");
             $("#presets div.visible img:first-child").click();
         }
 

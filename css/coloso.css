@@ -94,6 +94,12 @@ p {
 #mainWrapper #content #overlay > div.enviar button {
   float: right;
 }
+#mainWrapper #content #overlay > div.enviado > div {
+  visibility: hidden;
+}
+#mainWrapper #content #overlay > div.enviado > div.active {
+  visibility: visible;
+}
 #mainWrapper #content #overlay button {
   background-color: #00f;
   text-transform: uppercase;
@@ -206,6 +212,10 @@ p {
 }
 #mainWrapper #coloso #presets .boca img:nth-child(odd) {
   margin-right: 8%;
+}
+#mainWrapper #coloso #presets .corazon img {
+  margin-top: 10%;
+  width: 30%;
 }
 #mainWrapper #coloso #presets.visible {
   visibility: visible;

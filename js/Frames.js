@@ -95,6 +95,15 @@ var Frames = {
 
 
     },
+    //Devuelve el color actual de una parte del coloso (key)
+    getColor : function( key ) {
+        // si aún no se creó que devuelva color apagado
+        if ( Frames.frames[Frames.actualFrame] ) {
+            return Frames.frames[Frames.actualFrame][key];
+        } else {
+            return Coloso.COLOR_APAGADO;
+        }
+    },
     deleteFrame: function() {
         delete Frames.frames[Frames.actualFrame];
         Frames.setFrame(Frames.actualFrame, false);

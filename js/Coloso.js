@@ -1,5 +1,6 @@
 var Coloso = {
     GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
+    // GRUPOS: ["brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
     COLOR_APAGADO: 4,
     SUBGRUPOS: {
@@ -28,6 +29,11 @@ var Coloso = {
             ["dientes"],
             ["labioInf", "labioSup"],
             ["labioInf", "labiosCostado", "labioSup", "dientes"]
+        ],
+        "corazon" : [
+            ["corazonTriSup"],
+            ["corazonTriSup", "corazonTriInf", "corazonDiamante"],
+            ["corazonTriSup", "corazonTriInf"],
         ]
     },
 
@@ -99,6 +105,9 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
                         break;
                 }
             });
@@ -115,6 +124,28 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
+                        break;
+                }
+            });
+        });
+        $("#coloso .corazon img").each(function(i) {
+            $(this).click(function() {
+                $("#coloso #presets img").removeClass("selected");
+                $(this).addClass("selected");
+
+                switch (Coloso.grupoSelected.id) {
+                    case "corazon":
+                        var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
+                            return "#" + x;
+                        }).join(", ");
+
+                        Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
                         break;
                 }
             });

@@ -132,6 +132,14 @@ p {
                         float: right;
                     }
                 }
+
+                &.enviado > div {
+                    visibility: hidden;
+
+                    &.active {
+                        visibility: visible;
+                    }
+                }
             }
 
 
@@ -275,6 +283,10 @@ p {
                 &:nth-child(odd) {
                     margin-right: 8%;
                 }
+            }
+            .corazon img {
+                margin-top: 10%;
+                width: 30%;
             }
 
             &.visible {
