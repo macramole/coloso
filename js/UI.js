@@ -186,6 +186,14 @@ var UI = {
             $("#presets div.visible img:first-child").click();
         }
 
+        if ( Coloso.grupoSelected.id == "corazon" ) {
+            $("#presets, #presets > div").removeClass("visible");
+            $("#coloso #presets img").removeClass("selected");
+            $("#presets").addClass("visible");
+            $("#presets .corazon").addClass("visible");
+            $("#presets div.visible img:first-child").click();
+        }
+
         // chequeo si no hay nada prendido entonces que prenda del primer color
         Coloso.setColorIfApagado();
     },

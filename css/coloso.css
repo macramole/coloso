@@ -213,6 +213,10 @@ p {
 #mainWrapper #coloso #presets .boca img:nth-child(odd) {
   margin-right: 8%;
 }
+#mainWrapper #coloso #presets .corazon img {
+  margin-top: 10%;
+  width: 30%;
+}
 #mainWrapper #coloso #presets.visible {
   visibility: visible;
 }
