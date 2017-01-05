@@ -94,6 +94,12 @@ p {
 #mainWrapper #content #overlay > div.enviar button {
   float: right;
 }
+#mainWrapper #content #overlay > div.enviado > div {
+  visibility: hidden;
+}
+#mainWrapper #content #overlay > div.enviado > div.active {
+  visibility: visible;
+}
 #mainWrapper #content #overlay button {
   background-color: #00f;
   text-transform: uppercase;

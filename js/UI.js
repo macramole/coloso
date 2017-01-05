@@ -3,6 +3,7 @@ var UI = {
     PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
     ENVIAR_URL: "data.php",
+    COUNTDOWN : false,
 
     init: function() {
         UI.initColores();
@@ -133,9 +134,12 @@ var UI = {
 
                     $("#overlay .enviar").removeClass("active");
                     $("#overlay .enviado").addClass("active");
+
+                    UI.COUNTDOWN = result.processing;
+                    UI.onEnviado();
                 },
                 error: function() {
-                    alert("error");
+                    alert("Hubo un error enviando la animación al servidor, por favor, inténtelo más tarde.");
                 }
             });
 
@@ -144,6 +148,20 @@ var UI = {
             $("#overlay, #overlay .enviado").removeClass("active");
             //TODO que vuelva a empezar;
         });
+    },
+
+    onEnviado : function() {
+        if ( UI.COUNTDOWN ) {
+            $("#overlay .enviado .countdown").addClass("active");
+            $("#overlay .enviado .nocountdown").removeClass("active");
+
+            $("#overlay .enviado .countdown .hour").text( UI.COUNTDOWN.hour );
+            $("#overlay .enviado .countdown .min").text( UI.COUNTDOWN.min );
+            $("#overlay .enviado .countdown .sec").text( UI.COUNTDOWN.sec );
+        } else {
+            $("#overlay .enviado .nocountdown").addClass("active");
+            $("#overlay .enviado .countdown").removeClass("active");
+        }
     },
 
     // Evento que se llama cuando se clickea un grupo

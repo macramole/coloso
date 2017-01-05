@@ -4,7 +4,7 @@
 
 - ~~agrego el TODO al readme~~
 - ~~agregar manos (**Totó**)~~
-- agregar subgrupo de diamante
+- agregar subgrupo de diamante (**GrBr**)
 - ~~contar la cantidad de frames vacios <= 4 consecutivos (**Totó**)~~
 - ~~borrar el grupo cuando se pinta un subgrupo (**Totó**)~~
 - ~~que se pinte el primer color (**GrBr**)~~
@@ -17,7 +17,8 @@
     - ~~preparar front~~
     - ~~formulario de envio de animación~~
     - countdown
-        - ~~front~~
-        - server
-            - chequear cuantos archivos hay antes y estimar
-            - fijarse el archivo "procesando.txt" para ver si el servidor esta procesando
+        - front
+            - que vuelva a empezar con el boton "volver a empezar" (**Totó**)
+        - ~~server~~
+            - ~~chequear cuantos archivos hay antes y estimar~~
+            - ~~fijarse el archivo "procesando.txt" para ver si el servidor esta procesando~~
