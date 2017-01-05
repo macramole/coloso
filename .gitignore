@@ -1,2 +1,4 @@
 uploads/*
 sshConnect.sh
+.tern-port
+.gitignore

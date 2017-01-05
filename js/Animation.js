@@ -14,5 +14,5 @@ var Animation = {
         time = 1 - time; //invertir rango
         time = Math.round((time * 1400) + 100);
         return time;
-    }
-}
+    },
+};

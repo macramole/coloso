@@ -1,12 +1,11 @@
 var Frames = {
-
     INIT_FRAME: 0,
     actualFrame: null,
     frameToCopy: {},
     /*
-    formato JSON frames
-    frame: {id:color,id:color}
-    */
+       formato JSON frames
+       frame: {id:color,id:color}
+       */
     frames: [],
     init: function() {
         //var frameSelector = document.getElementById("frames");
@@ -17,7 +16,7 @@ var Frames = {
     },
     //devuelvo un obj con todas las partes en gris
     getFrameObject: function() {
-        var obj = {}
+        var obj = {};
         for (var i = 0; i < Coloso.GRUPOS.length; i++) {
             switch (Coloso.GRUPOS[i]) {
                 case 'ojo_izquierdo':
@@ -48,7 +47,7 @@ var Frames = {
         return Frames.frames;
     },
     //setea los colores del frame actual según el JSON
-    setFrame: function(f, onAnim) {
+    setFrame: function(f) {
         Frames.actualFrame = f; //!!!!!
         if (Frames.frames[Frames.actualFrame] !== undefined) {
             Coloso.setColorsAll(Frames.frames[Frames.actualFrame]);
@@ -61,13 +60,13 @@ var Frames = {
     toNextFrame: function() {
 
         /*if (Frames.frames[Frames.actualFrame] === undefined) {
-            Frames.frames[Frames.actualFrame] = Frames.getFrameObject();
-        }*/
+          Frames.frames[Frames.actualFrame] = Frames.getFrameObject();
+          }*/
 
         if (Frames.actualFrame > Frames.frames.length + 1 || Frames.actualFrame === 9) {
             Frames.setFrame(0);
         } else {
-            Frames.setFrame((Frames.actualFrame + 1) % Frames.frames.length, true)
+            Frames.setFrame((Frames.actualFrame + 1) % Frames.frames.length, true);
 
         }
         UI.onFrameChanged(Frames.actualFrame);
@@ -95,10 +94,6 @@ var Frames = {
         }
 
 
-    },
-    //Devuelve el color actual de una parte del coloso (key)
-    getColor : function( key ) {
-        return Frames.frames[Frames.actualFrame][key];
     },
     deleteFrame: function() {
         delete Frames.frames[Frames.actualFrame];
@@ -142,4 +137,4 @@ var Frames = {
 
     }
 
-}
+};

@@ -62,7 +62,7 @@ var Coloso = {
     },
 
     activateGrupos: function() {
-        for (i in Coloso.GRUPOS) {
+        for (var i in Coloso.GRUPOS) {
             var grupo = Coloso.svg.querySelector("#" + Coloso.GRUPOS[i]);
             var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
@@ -72,7 +72,7 @@ var Coloso = {
 
                 //Selectores
                 Coloso.selectorsHideAll();
-                selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
+                var selector = Coloso.svg.querySelector("#" + Coloso.grupoSelected.id + "Selector");
                 if (selector) {
                     selector.style.opacity = 1;
                 }
@@ -149,9 +149,9 @@ var Coloso = {
 
     setColor: function(numColor) {
         /*if (Coloso.grupoSelected == null) {
-            return;
-        }*/
-
+          return;
+          }*/
+          
         var color = Coloso.COLORES[numColor];
 
         if (Coloso.subgrupoSelected == null) {
@@ -161,7 +161,7 @@ var Coloso = {
                 if (child.nodeName == "path") {
                     child.style.stroke = color;
                 } else if (child.nodeName == "g") {
-                    for (j = 0; j < child.children.length; j++) {
+                    for (var j = 0; j < child.children.length; j++) {
                         var elem = child.children[j];
                         elem.style.stroke = color;
                     }
@@ -172,9 +172,9 @@ var Coloso = {
             if (Coloso.grupoSelected !== null) {
                 var idxBiggerSubGroup; //Que subgrupo tiene todas las secciones pintadas
                 if (Coloso.grupoSelected.id === "boca") {
-                    idxBiggerSubGroup = 5
+                    idxBiggerSubGroup = 5;
                 } else {
-                    idxBiggerSubGroup = 1
+                    idxBiggerSubGroup = 1;
                 }
                 for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup].length; i++) {
                     var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup][i];
@@ -196,7 +196,7 @@ var Coloso = {
             if (node.nodeName == "path") {
                 Coloso.subgrupoSelected[i].style.stroke = color;
             } else if (node.nodeName == "g") {
-                for (j = 0; j < node.children.length; j++) {
+                for (var j = 0; j < node.children.length; j++) {
                     var child = node.children[j];
                     child.style.stroke = color;
                 }
@@ -228,4 +228,4 @@ var Coloso = {
         Coloso.subgrupoSelected = prevSubSelected;
 
     }
-}
+};
