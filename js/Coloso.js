@@ -105,6 +105,9 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
                         break;
                 }
             });
@@ -121,6 +124,9 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
                         break;
                 }
             });
@@ -137,6 +143,9 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
+                        // Coloso.setColor(0);
+                        // Frames.setColor(0);
+                        // UI.onFrameSetted();
                         break;
                 }
             });

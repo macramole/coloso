@@ -11,19 +11,7 @@ var UI = {
         UI.initButtons();
         UI.initIOsFix();
 
-        //setup boton cerrar zoom a cabeza
-        $("#btnCerrar").click(function() {
 
-            Coloso.unselect();
-
-            $("#colores").removeClass("visible");
-            $("#btnCerrar").removeClass("visible");
-            $("#presets, #presets > div").removeClass("visible");
-
-            $("#coloso object").removeClass("zoom");
-
-            $("#areas .info").text(UI.DEFAULT_AREA);
-        });
 
         //setup slider
         $("#slideVelocidad").bind('input', function() {
@@ -41,8 +29,6 @@ var UI = {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
             $("#slideVelocidad").removeClass("normal");
             $("#slideVelocidad").addClass("ios");
-            // alert("ya");
-            // setTimeout(function() { window.scrollTo(0, 1) }, 100);
         }
     },
 
@@ -147,6 +133,20 @@ var UI = {
         $("#btnNuevaAnimacion").click(function() {
             $("#overlay, #overlay .enviado").removeClass("active");
             //TODO que vuelva a empezar;
+        });
+
+        //setup boton cerrar zoom a cabeza
+        $("#btnCerrar").click(function() {
+
+            Coloso.unselect();
+
+            $("#colores").removeClass("visible");
+            $("#btnCerrar").removeClass("visible");
+            $("#presets, #presets > div").removeClass("visible");
+
+            $("#coloso object").removeClass("zoom");
+
+            $("#areas .info").text(UI.DEFAULT_AREA);
         });
     },
 
