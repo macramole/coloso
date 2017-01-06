@@ -147,7 +147,9 @@ p {
   margin: 0;
   padding: 0;
   height: 17%;
-  visibility: hidden;
+}
+#mainWrapper #coloso #colores.seleccionDientes {
+  left: -110px !important;
 }
 #mainWrapper #coloso #colores li {
   float: left;
@@ -164,6 +166,12 @@ p {
 }
 #mainWrapper #coloso #colores li.no img {
   width: 110%;
+}
+#mainWrapper #coloso #colores li.blanco {
+  background-color: #fff !important;
+}
+#mainWrapper #coloso #colores li.invisible {
+  visibility: hidden;
 }
 #mainWrapper #coloso #colores.visible {
   visibility: visible;

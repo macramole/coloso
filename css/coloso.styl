@@ -201,6 +201,10 @@ p {
             padding: 0;
             height: 17%;
 
+            &.seleccionDientes{
+              left: -110px !important;
+            }
+
             li {
                 float: left;
                 height: 100%;
@@ -220,13 +224,21 @@ p {
                         width: 110%;
                     }
                 }
+                &.blanco{
+                  background-color: #ffffff !important
+                }
+
+                &.invisible{
+                  visibility: hidden;
+                  //margin-right:115px;
+                }
             }
 
-            visibility: hidden;
 
             &.visible {
                 visibility: visible;
             }
+
         }
 
         #presets {

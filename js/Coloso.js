@@ -1,8 +1,9 @@
 var Coloso = {
     GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     // GRUPOS: ["brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
-    COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D"],
+    COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D", "#FFFFFF"],
     COLOR_APAGADO: 4,
+    COLOR_DIENTES: 5,
     SUBGRUPOS: {
         "ojo_izquierdo": [
             ["ojoIzqSup", "ojoIzqInf"],
@@ -30,7 +31,7 @@ var Coloso = {
             ["labioInf", "labioSup"],
             ["labioInf", "labiosCostado", "labioSup", "dientes"]
         ],
-        "corazon" : [
+        "corazon": [
             ["corazonTriSup"],
             ["corazonTriSup", "corazonTriInf", "corazonDiamante"],
             ["corazonTriSup", "corazonTriInf"],
@@ -72,6 +73,7 @@ var Coloso = {
             var grupo = Coloso.svg.querySelector("#" + Coloso.GRUPOS[i]);
             var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
+                Coloso.restoreColorsLayout();
                 Coloso.grupoSelected = this;
                 Coloso.subgrupoSelected = null;
                 UI.onGrupoSelected();
@@ -92,7 +94,10 @@ var Coloso = {
 
     activateSubGrupos: function() {
         $("#coloso .ojos img").each(function(i) {
+
             $(this).click(function() {
+
+                Coloso.restoreColorsLayout();
                 $("#coloso #presets img").removeClass("selected");
                 $(this).addClass("selected");
 
@@ -123,6 +128,23 @@ var Coloso = {
                             return "#" + x;
                         }).join(", ");
 
+                        if (i === 3) {
+                            //si se seleccionan los dientes
+                            if ($("#colores li").length === 5) {
+                                $("#colores li").each(function(j) {
+                                    if (j < 3) {
+                                        $(this).addClass("invisible");
+
+                                    } else if (j == 3) {
+                                        $(this).addClass("blanco");
+                                    }
+                                });
+                                $("ul#colores.visible").addClass("seleccionDientes");
+                            }
+
+                        } else {
+                            Coloso.restoreColorsLayout();
+                        }
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
                         // Coloso.setColor(0);
                         // Frames.setColor(0);
@@ -133,6 +155,7 @@ var Coloso = {
         });
         $("#coloso .corazon img").each(function(i) {
             $(this).click(function() {
+                Coloso.restoreColorsLayout();
                 $("#coloso #presets img").removeClass("selected");
                 $(this).addClass("selected");
 
@@ -151,14 +174,25 @@ var Coloso = {
             });
         });
     },
+    //para volver a la grilla de 5 colores
+    //está función se corre siempre que se hace click sobre un grupo o un subgrupo (por ahí no es necesario...)
+    restoreColorsLayout: function() {
+        $("#colores li").each(function(i) {
+            //console.log($(this));
+            $(this).removeClass("blanco");
+            $(this).removeClass("invisible");
 
+        });
+        $("ul#colores.visible").removeClass("seleccionDientes");
+    },
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
     setColorIfApagado: function() {
         //si NO elegió un subgrupo se prende directo si estaba apagado
+        var rIdx = Math.floor(Math.random()* 4 );
         if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
             if (Frames.getColor(Coloso.grupoSelected.id) == Coloso.COLOR_APAGADO) {
-                Coloso.setColor(0);
-                Frames.setColor(0);
+                Coloso.setColor(rIdx);
+                Frames.setColor(rIdx);
                 UI.onFrameSetted();
             }
         } else {
@@ -171,8 +205,8 @@ var Coloso = {
                 }
             }
             if (todosApagados) {
-                Coloso.setColor(0);
-                Frames.setColor(0);
+                Coloso.setColor(rIdx);
+                Frames.setColor(rIdx);
                 UI.onFrameSetted();
             }
         }
@@ -182,7 +216,7 @@ var Coloso = {
         /*if (Coloso.grupoSelected == null) {
           return;
           }*/
-          
+
         var color = Coloso.COLORES[numColor];
 
         if (Coloso.subgrupoSelected == null) {
@@ -210,18 +244,18 @@ var Coloso = {
                 for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup].length; i++) {
                     var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][idxBiggerSubGroup][i];
                     Coloso.subgrupoSelected = Coloso.svg.querySelectorAll("#" + seccion);
-                    Coloso.setSubGroupColor(Coloso.COLORES[4]);
+                    Coloso.setSubGroupColor(Coloso.COLORES[Coloso.COLOR_APAGADO], false);
                 }
             }
 
 
 
             Coloso.subgrupoSelected = prevSubGrupoSelected;
-            Coloso.setSubGroupColor(color);
+            Coloso.setSubGroupColor(color, true);
         }
     },
     //para setear color de Subgrupo. En una función porque ahora lo necesito para resetear colores al cambiar de subgrupo
-    setSubGroupColor: function(color) {
+    setSubGroupColor: function(color, coloreando) { //el segundo param es para ver si estoy coloreando o no (para los dientes...)
         for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
             var node = Coloso.subgrupoSelected[i];
             if (node.nodeName == "path") {
@@ -229,7 +263,13 @@ var Coloso = {
             } else if (node.nodeName == "g") {
                 for (var j = 0; j < node.children.length; j++) {
                     var child = node.children[j];
-                    child.style.stroke = color;
+
+                    if (node.id === "dientes" && coloreando && color !== Coloso.COLORES[Coloso.COLOR_APAGADO]) {
+                        child.style.stroke = Coloso.COLORES[Coloso.COLOR_DIENTES];
+                    } else {
+                        child.style.stroke = color;
+                    }
+
                 }
             }
         }
