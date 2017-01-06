@@ -4,7 +4,7 @@
 
 - ~~agrego el TODO al readme~~
 - ~~agregar manos (**Totó**)~~
-- ~~agregar subgrupo de diamante (**GrBr**)~~ falta agregar a Frames los nuevos (**Totó**)
+- ~~agregar subgrupo de diamante (**GrBr**)~~ ~~falta agregar a Frames los nuevos (**Totó**)~~ falta que se salga del coso gris cuando seleccionas otra parte (**GrBr**)
 - ~~contar la cantidad de frames vacios <= 4 consecutivos (**Totó**)~~
 - ~~borrar el grupo cuando se pinta un subgrupo (**Totó**)~~
 - ~~que se pinte el primer color (**GrBr**)~~

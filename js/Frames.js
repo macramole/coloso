@@ -34,6 +34,11 @@ var Frames = {
                         obj[Coloso.SUBGRUPOS['boca'][5][k]] = 4;
                     }
                     break;
+                case 'corazon':
+                    for (var k = 0; k < Coloso.SUBGRUPOS['corazon'][1].length; k++) {
+                        obj[Coloso.SUBGRUPOS['corazon'][1][k]] = 4;
+                    }
+                    break;
                 default:
                     obj[Coloso.GRUPOS[i]] = 4;
                     break;
@@ -96,9 +101,9 @@ var Frames = {
 
     },
     //Devuelve el color actual de una parte del coloso (key)
-    getColor : function( key ) {
+    getColor: function(key) {
         // si aún no se creó que devuelva color apagado
-        if ( Frames.frames[Frames.actualFrame] ) {
+        if (Frames.frames[Frames.actualFrame]) {
             return Frames.frames[Frames.actualFrame][key];
         } else {
             return Coloso.COLOR_APAGADO;
