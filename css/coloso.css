@@ -147,9 +147,10 @@ p {
   margin: 0;
   padding: 0;
   height: 17%;
+  visibility: hidden;
 }
 #mainWrapper #coloso #colores.seleccionDientes {
-  left: -110px !important;
+  left: -30.8% !important;
 }
 #mainWrapper #coloso #colores li {
   float: left;

@@ -183,7 +183,7 @@ var Coloso = {
             $(this).removeClass("invisible");
 
         });
-        $("ul#colores.visible").removeClass("seleccionDientes");
+        $("ul#colores").removeClass("seleccionDientes");
     },
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
     setColorIfApagado: function() {
