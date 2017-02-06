@@ -3,13 +3,14 @@ var UI = {
     PLAY_TEXT: 'PLAY <span>&#9654;</span>',
     PAUSE_TEXT: 'PAUSE <span style="font-size:12px">&#9612;&#9612;</span>',
     ENVIAR_URL: "data.php",
-    COUNTDOWN : false,
+    COUNTDOWN: false,
 
     init: function() {
         UI.initColores();
         UI.initFrames();
         UI.initButtons();
         UI.initIOsFix();
+
 
 
 
@@ -21,6 +22,18 @@ var UI = {
             }
 
         });
+
+    },
+    reset: function() {
+        $("#animation .frame").each(function(elem) {
+            $(this).removeClass("setted");
+        });
+        $("#animation .frame").removeClass("selected");
+        $("#animation .frame").eq(0).addClass("selected");
+        $("#buttons #btnPlay").html(UI.PLAY_TEXT);
+        $("#buttons #btnPlay").attr("data-play", "0");
+        Animation.stop();
+
 
 
     },
@@ -95,6 +108,7 @@ var UI = {
         });
         $("#animation #btnPaste").click(function() {
             Frames.pasteFrame();
+            UI.onFrameSetted();
         });
         $("#btnComenzar").click(function() {
             $("#overlay, #overlay .hola").removeClass("active");
@@ -109,6 +123,8 @@ var UI = {
         });
         $("#btnEnviar").click(function() {
             var data = Frames.getAllFrames();
+
+
             $.ajax({
                 url: UI.ENVIAR_URL,
                 type: 'POST',
@@ -133,6 +149,9 @@ var UI = {
         $("#btnNuevaAnimacion").click(function() {
             $("#overlay, #overlay .enviado").removeClass("active");
             //TODO que vuelva a empezar;
+            Frames.reset();
+            UI.reset();
+
         });
 
         //setup boton cerrar zoom a cabeza
@@ -150,14 +169,14 @@ var UI = {
         });
     },
 
-    onEnviado : function() {
-        if ( UI.COUNTDOWN ) {
+    onEnviado: function() {
+        if (UI.COUNTDOWN) {
             $("#overlay .enviado .countdown").addClass("active");
             $("#overlay .enviado .nocountdown").removeClass("active");
 
-            $("#overlay .enviado .countdown .hour").text( UI.COUNTDOWN.hour );
-            $("#overlay .enviado .countdown .min").text( UI.COUNTDOWN.min );
-            $("#overlay .enviado .countdown .sec").text( UI.COUNTDOWN.sec );
+            $("#overlay .enviado .countdown .hour").text(UI.COUNTDOWN.hour);
+            $("#overlay .enviado .countdown .min").text(UI.COUNTDOWN.min);
+            $("#overlay .enviado .countdown .sec").text(UI.COUNTDOWN.sec);
         } else {
             $("#overlay .enviado .nocountdown").addClass("active");
             $("#overlay .enviado .countdown").removeClass("active");
@@ -187,7 +206,7 @@ var UI = {
             $("#presets div.visible img:first-child").click();
         }
 
-        if ( Coloso.grupoSelected.id == "corazon" ) {
+        if (Coloso.grupoSelected.id == "corazon") {
             $("#presets, #presets > div").removeClass("visible");
             $("#coloso #presets img").removeClass("selected");
             $("#presets").addClass("visible");
@@ -203,11 +222,16 @@ var UI = {
         $("#animation .frame").eq(i).addClass("selected");
 
     },
-    onFrameSetted: function(){
-      var idx = $("#animation .frame.selected").index();
-      for (var i = 0; i < idx; i++) {
-        //hay una clase .setted pero no me deja hacer .addClass(.setted) sobre el elemento :(
-        $("#animation .frame")[i].style = "opacity: 1;"
-      }
-    }
+    onFrameSetted: function() {
+        $("#animation .frame.selected").each(function() {
+            $(this).addClass("setted");
+        });
+        /*
+        for (var i = 0; i < idx; i++) {
+            //hay una clase .setted pero no me deja hacer .addClass(.setted) sobre el elemento :(
+            $("#animation .frame")[i].style = "opacity: 1;"
+        }
+        */
+    },
+
 }

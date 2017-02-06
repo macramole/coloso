@@ -6,13 +6,19 @@ var Frames = {
        formato JSON frames
        frame: {id:color,id:color}
        */
-    frames: [],
+    frames,
     init: function() {
         //var frameSelector = document.getElementById("frames");
         Frames.actualFrame = Frames.INIT_FRAME;
+        Frames.frames = [];
         //armo el obj del primer frame
         Frames.frames[Frames.actualFrame] = Frames.getFrameObject();
+        Frames.setFrame(Frames.actualFrame);
 
+
+    },
+    reset: function(){
+      Frames.init();
     },
     //devuelvo un obj con todas las partes en gris
     getFrameObject: function() {
@@ -161,6 +167,6 @@ var Frames = {
             return false;
         }
 
-    }
+    },
 
 };

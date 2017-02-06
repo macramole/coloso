@@ -18,7 +18,7 @@
     - ~~formulario de envio de animación~~
     - countdown
         - front
-            - que vuelva a empezar con el boton "volver a empezar" (**Totó**)
+            - ~~que vuelva a empezar con el boton "volver a empezar"~~ (**Totó**)
         - ~~server~~
             - ~~chequear cuantos archivos hay antes y estimar~~
             - ~~fijarse el archivo "procesando.txt" para ver si el servidor esta procesando~~
