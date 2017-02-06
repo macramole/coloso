@@ -78,14 +78,26 @@ var Frames = {
 
     },
     //setea el color del cacho dentro del frame actual
-    setColor: function(c) {
-        var color = c;
-
+    setColor: function(color) {
         if (Frames.frames[Frames.actualFrame] === undefined) {
             Frames.frames[Frames.actualFrame] = Frames.getFrameObject();
         }
         var grupo = Coloso.grupoSelected.id;
         if (Coloso.subgrupoSelected !== null) {
+
+            //para resetear el color de todo el grupo en el que estoy
+            var idxBiggerSubGroup; //Que subgrupo tiene todas las secciones pintadas
+            if (grupo === "boca") {
+                idxBiggerSubGroup = 5;
+            } else {
+                idxBiggerSubGroup = 1;
+            }
+
+            for (var i = 0; i < Coloso.SUBGRUPOS[grupo][idxBiggerSubGroup].length; i++) {
+              var seccion = Coloso.SUBGRUPOS[grupo][idxBiggerSubGroup][i];
+              Frames.frames[Frames.actualFrame][seccion] = 4;
+            }
+            //ahora si pintame
             for (var key in Frames.frames[Frames.actualFrame]) {
                 for (var i = 0; i < Coloso.subgrupoSelected.length; i++) {
                     if (Coloso.subgrupoSelected[i].id === key) {
