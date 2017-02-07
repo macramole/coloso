@@ -260,6 +260,9 @@ p {
   height: 100%;
   cursor: pointer;
 }
+#mainWrapper #animation .framesWrapper li.frame {
+  opacity: 0.4;
+}
 #mainWrapper #animation .framesWrapper li.flecha {
   width: 6%;
 }
