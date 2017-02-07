@@ -1,6 +1,5 @@
 <?php
-$UPLOAD_PATH = "uploads/";
-$PROCESSING_FILE = $UPLOAD_PATH . "procesando.txt";
+include("./constants.php");
 $PROCESSING_THRESHOLD = 1; //en minutos
 
 $SECONDS_PER_KB = 60; //cada K a cuantos minutos equivale
