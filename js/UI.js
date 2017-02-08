@@ -24,19 +24,6 @@ var UI = {
         });
 
     },
-    reset: function() {
-        $("#animation .frame").each(function(elem) {
-            $(this).removeClass("setted");
-        });
-        $("#animation .frame").removeClass("selected");
-        $("#animation .frame").eq(0).addClass("selected");
-        $("#buttons #btnPlay").html(UI.PLAY_TEXT);
-        $("#buttons #btnPlay").attr("data-play", "0");
-        Animation.stop();
-
-
-
-    },
 
     initIOsFix: function() {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
@@ -122,7 +109,13 @@ var UI = {
             }
         });
         $("#btnEnviar").click(function() {
-            var data = Frames.getAllFrames();
+            var data = {
+                "frames": Frames.getAllFrames(),
+                "velocidad": $("#slideVelocidad").val(),
+                "nombre": $("#txtNombre").val(),
+                "email" : $("#txtEmail").val()
+            }
+
 
 
             $.ajax({
@@ -167,6 +160,20 @@ var UI = {
 
             $("#areas .info").text(UI.DEFAULT_AREA);
         });
+    },
+
+    reset: function() {
+        $("#animation .frame").each(function(elem) {
+            $(this).removeClass("setted");
+        });
+        $("#animation .frame").removeClass("selected");
+        $("#animation .frame").eq(0).addClass("selected");
+        $("#buttons #btnPlay").html(UI.PLAY_TEXT);
+        $("#buttons #btnPlay").attr("data-play", "0");
+        Animation.stop();
+
+
+
     },
 
     onEnviado: function() {
