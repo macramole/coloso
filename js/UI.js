@@ -76,6 +76,13 @@ var UI = {
 
     initButtons: function() {
 
+        $(".logo").mouseover(function() {
+            $("img", this).attr("src", "image/logo_h.svg");
+        });
+        $(".logo").mouseleave(function() {
+            $("img", this).attr("src", "image/logo.svg");
+        });
+
         $("#animation #btnPlay").click(function() {
             if ($(this).attr("data-play") === "0") {
                 //playAnimation
