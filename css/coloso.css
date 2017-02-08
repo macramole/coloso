@@ -102,14 +102,15 @@ p {
 #mainWrapper #content #overlay > div.enviado > div.active {
   visibility: visible;
 }
+#mainWrapper #content #overlay #btnCancelarEnviar {
+  margin-right: 10px;
+  background: none;
+}
 #mainWrapper #content #overlay button {
   background-color: #00f;
   text-transform: uppercase;
   font-size: 1em;
   margin-top: 1em;
-}
-#mainWrapper #content #btnCancelarEnviar {
-  margin-right: 10px;
 }
 #mainWrapper #coloso {
   height: 65%;
