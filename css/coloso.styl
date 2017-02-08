@@ -11,7 +11,8 @@ body {
     margin: 0;
     padding: 0;
 
-    background-color: black;
+    // background-color: black;
+    background: url("../image/fondos/1.png");
     color: #878787;
 
     font-family: "Josefin Sans";
@@ -96,6 +97,7 @@ p {
         margin: 0 auto;
         overflow: hidden;
         position: relative;
+        background-color: black;
 
         #overlay {
             position: absolute;
@@ -108,6 +110,11 @@ p {
 
             &.active {
                 display: block;
+            }
+
+            p {
+                margin-bottom: 1em;
+                font-size: 1.2em;
             }
 
             > div {
