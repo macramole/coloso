@@ -39,7 +39,10 @@ var UI = {
     },
 
     initIOsFix: function() {
-        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || isSafari) {
             $("#slideVelocidad").removeClass("normal");
             $("#slideVelocidad").addClass("ios");
         }
