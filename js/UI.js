@@ -26,7 +26,10 @@ var UI = {
     },
 
     initIOsFix: function() {
-        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || isSafari) {
             $("#slideVelocidad").removeClass("normal");
             $("#slideVelocidad").addClass("ios");
         }
@@ -72,6 +75,13 @@ var UI = {
     },
 
     initButtons: function() {
+
+        $(".logo").mouseover(function() {
+            $("img", this).attr("src", "image/logo_h.svg");
+        });
+        $(".logo").mouseleave(function() {
+            $("img", this).attr("src", "image/logo.svg");
+        });
 
         $("#animation #btnPlay").click(function() {
             if ($(this).attr("data-play") === "0") {
