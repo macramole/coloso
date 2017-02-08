@@ -108,6 +108,9 @@ p {
   font-size: 1em;
   margin-top: 1em;
 }
+#mainWrapper #content #btnCancelarEnviar {
+  margin-right: 10px;
+}
 #mainWrapper #coloso {
   height: 65%;
   position: relative;

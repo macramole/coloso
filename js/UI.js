@@ -85,10 +85,27 @@ var UI = {
 
         $("#animation #btnPlay").click(function() {
             if ($(this).attr("data-play") === "0") {
-                //playAnimation
-                Animation.play(Animation.mapTime($("#slideVelocidad").val()));
-                $(this).html(UI.PAUSE_TEXT);
-                $(this).attr("data-play", "1");
+                var validAnim;
+                var count = 0;
+                for (var i = 0; i<Frames.frames.length; i++){
+                    if (Frames.frames[i] === undefined) {
+                        count++;
+                    }
+                }
+                if (count >= 2) {
+                    validAnim = false;
+                    alert('Tenés muchos frames intermedios sin definir!');
+                } else {
+                    validAnim = true;
+                }
+                if (validAnim) {
+                    //playAnimation
+                    Animation.play(Animation.mapTime($("#slideVelocidad").val()));
+                    $(this).html(UI.PAUSE_TEXT);
+                    $(this).attr("data-play", "1");
+
+                }
+
             } else {
                 Animation.stop();
                 $(this).attr("data-play", "0");
@@ -118,12 +135,17 @@ var UI = {
                 $("#overlay, #overlay .enviar").addClass("active");
             }
         });
+
+        $("#btnCancelarEnviar").click(function(){
+          $("#overlay, #overlay .enviar").removeClass("active");
+        });
+        
         $("#btnEnviar").click(function() {
             var data = {
                 "frames": Frames.getAllFrames(),
                 "velocidad": $("#slideVelocidad").val(),
                 "nombre": $("#txtNombre").val(),
-                "email" : $("#txtEmail").val()
+                "email": $("#txtEmail").val()
             }
 
 
