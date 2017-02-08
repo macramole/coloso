@@ -207,7 +207,6 @@ var UI = {
         $("#areas span.info").text(Coloso.grupoSelected.id.replace("_", " "));
 
         $("#presets, #presets > div").removeClass("visible");
-        $("#coloso #presets img").removeClass("selected");
 
         if (["cabeza", "ojo_izquierdo", "ojo_derecho", "boca"].indexOf(Coloso.grupoSelected.id) >= 0) {
             $("#coloso object").addClass("zoom");
@@ -220,7 +219,9 @@ var UI = {
                 $("#presets .boca").addClass("visible");
             }
 
-            $("#presets div.visible img:first-child").click();
+            // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
+                $("#presets div.visible img:first-child").click();
+            // }
         }
 
         if (Coloso.grupoSelected.id == "corazon") {
@@ -228,11 +229,17 @@ var UI = {
             $("#coloso #presets img").removeClass("selected");
             $("#presets").addClass("visible");
             $("#presets .corazon").addClass("visible");
-            $("#presets div.visible img:first-child").click();
+
+            // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
+                $("#presets div.visible img:first-child").click();
+            // }
         }
 
         // chequeo si no hay nada prendido entonces que prenda del primer color
-        Coloso.setColorIfApagado();
+        //si NO elegió un subgrupo se prende directo si estaba apagado
+        if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
+            Coloso.setColorIfApagado();
+        }
     },
     onFrameChanged: function(i) {
         $("#animation .frame").removeClass("selected");

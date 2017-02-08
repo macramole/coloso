@@ -1,6 +1,5 @@
 var Coloso = {
     GRUPOS: ["corazon", "brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
-    // GRUPOS: ["brazos", "manos", "cintura", "hombros", "cabeza", "ojo_izquierdo", "ojo_derecho", "boca"],
     COLORES: ["#FF002E", "#00E100", "#00C6FF", "#FFE600", "#7D7D7D", "#FFFFFF"],
     COLOR_APAGADO: 4,
     COLOR_DIENTES: 5,
@@ -36,6 +35,13 @@ var Coloso = {
             ["corazonTriSup", "corazonTriInf", "corazonDiamante"],
             ["corazonTriSup", "corazonTriInf"],
         ]
+    },
+    //cada subgrupo cuales son todas sus piezas, se usa para definir el color en Coloso.setColorIfApagado
+    SUBGRUPOS_COMPLETOS : {
+        "ojo_izquierdo": ["ojoIzqSup", "ojoIzqInf", "ojoIzqMedio"],
+        "ojo_derecho": ["ojoDerSup", "ojoDerInf", "ojoDerMedio"],
+        "boca": ["labioInf", "labiosCostado", "labioSup"], // no incluyo dientes porque son blancos
+        "corazon": ["corazonTriSup", "corazonTriInf", "corazonDiamante"]
     },
 
     SELECTORS: ["cinturaSelector", "hombrosSelector", "brazosSelector", "manosSelector"],
@@ -110,9 +116,7 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
-                        // Coloso.setColor(0);
-                        // Frames.setColor(0);
-                        // UI.onFrameSetted();
+                        Coloso.setColorIfApagado();
                         break;
                 }
             });
@@ -146,9 +150,7 @@ var Coloso = {
                             Coloso.restoreColorsLayout();
                         }
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
-                        // Coloso.setColor(0);
-                        // Frames.setColor(0);
-                        // UI.onFrameSetted();
+                        Coloso.setColorIfApagado();
                         break;
                 }
             });
@@ -166,9 +168,7 @@ var Coloso = {
                         }).join(", ");
 
                         Coloso.subgrupoSelected = Coloso.svg.querySelectorAll(query);
-                        // Coloso.setColor(0);
-                        // Frames.setColor(0);
-                        // UI.onFrameSetted();
+                        Coloso.setColorIfApagado();
                         break;
                 }
             });
@@ -185,10 +185,28 @@ var Coloso = {
         });
         $("ul#colores").removeClass("seleccionDientes");
     },
+
+    //recorre las partes del subgrupo seleccionado y devuelve el color (o Coloso.COLOR_APAGADO)
+    getCurrentSubgrupoColor : function() {
+        var keysSubGrupo = Coloso.SUBGRUPOS_COMPLETOS[Coloso.grupoSelected.id];
+        var currentSubGrupoColor = Coloso.COLOR_APAGADO;
+
+        for (var i = 0; i < keysSubGrupo.length; i++) {
+            var subGrupoColor = Frames.getColor(keysSubGrupo[i]);
+            if ( subGrupoColor != Coloso.COLOR_APAGADO) {
+                currentSubGrupoColor = subGrupoColor;
+                break;
+            }
+        }
+
+        return currentSubGrupoColor;
+    },
+
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
     setColorIfApagado: function() {
-        //si NO elegió un subgrupo se prende directo si estaba apagado
         var rIdx = Math.floor(Math.random()* 4 );
+
+        //si NO elegió un subgrupo se prende directo si estaba apagado
         if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
             if (Frames.getColor(Coloso.grupoSelected.id) == Coloso.COLOR_APAGADO) {
                 Coloso.setColor(rIdx);
@@ -196,19 +214,17 @@ var Coloso = {
                 UI.onFrameSetted();
             }
         } else {
-            var keysPrimerPreset = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][0];
-            var todosApagados = true;
-            for (var i = 0; i < keysPrimerPreset.length; i++) {
-                if (Frames.getColor(keysPrimerPreset[i]) != Coloso.COLOR_APAGADO) {
-                    todosApagados = false;
-                    break;
-                }
+
+            var currentSubGrupoColor = Coloso.getCurrentSubgrupoColor();
+            var colorASetear = rIdx;
+
+            if ( currentSubGrupoColor != Coloso.COLOR_APAGADO ) {
+                 colorASetear = currentSubGrupoColor;
             }
-            if (todosApagados) {
-                Coloso.setColor(rIdx);
-                Frames.setColor(rIdx);
-                UI.onFrameSetted();
-            }
+
+            Coloso.setColor(colorASetear);
+            Frames.setColor(colorASetear);
+            UI.onFrameSetted();
         }
     },
 
