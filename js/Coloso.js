@@ -25,7 +25,7 @@ var Coloso = {
         ],
         "boca": [
             ["labioInf", "labiosCostado"],
-            [],
+            ["labioSup"],
             ["labioInf", "labiosCostado", "labioSup"],
             ["dientes"],
             ["labioInf", "labioSup"],
