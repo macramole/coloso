@@ -8,7 +8,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background: url("../image/fondos/1.png");
   color: #878787;
   font-family: "Josefin Sans";
   font-weight: 600;
@@ -61,6 +61,7 @@ p {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  background-color: #000;
 }
 #mainWrapper #content #overlay {
   position: absolute;
@@ -73,6 +74,10 @@ p {
 }
 #mainWrapper #content #overlay.active {
   display: block;
+}
+#mainWrapper #content #overlay p {
+  margin-bottom: 1em;
+  font-size: 1.2em;
 }
 #mainWrapper #content #overlay > div {
   position: relative;
@@ -102,14 +107,15 @@ p {
 #mainWrapper #content #overlay > div.enviado > div.active {
   visibility: visible;
 }
+#mainWrapper #content #overlay #btnCancelarEnviar {
+  margin-right: 10px;
+  background: none;
+}
 #mainWrapper #content #overlay button {
   background-color: #00f;
   text-transform: uppercase;
   font-size: 1em;
   margin-top: 1em;
-}
-#mainWrapper #content #btnCancelarEnviar {
-  margin-right: 10px;
 }
 #mainWrapper #coloso {
   height: 65%;
