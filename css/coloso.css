@@ -370,6 +370,11 @@ button {
   padding: 0.4em 0.6em 0.2em 0.6em;
   font-weight: 900;
 }
+button:focus,
+button::-moz-focus-inner {
+  outline: none;
+  border: 0;
+}
 input[type=range].normal {
   -webkit-appearance: none;
   width: 100%;
