@@ -157,7 +157,7 @@ var UI = {
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function(result) {
-                    console.log(result);
+                    // console.log(result);
 
                     $("#overlay .enviar").removeClass("active");
                     $("#overlay .enviado").addClass("active");
@@ -209,18 +209,17 @@ var UI = {
     },
 
     onEnviado: function() {
+        $("#overlay .enviado .name").text( $("#txtNombre").val() );
+
         if (UI.COUNTDOWN) {
             $("#overlay .enviado .countdown").addClass("active");
             $("#overlay .enviado .nocountdown").removeClass("active");
-
-            // $("#overlay .enviado .countdown .hour").text(UI.COUNTDOWN.hour);
-            // $("#overlay .enviado .countdown .min").text(UI.COUNTDOWN.min);
-            // $("#overlay .enviado .countdown .sec").text(UI.COUNTDOWN.sec);
 
             var dia = UI.COUNTDOWN.hoy ? "HOY " : "MAÑANA ";
             dia += "a las " + UI.COUNTDOWN.horario;
 
             $("#overlay .enviado .countdown .cuando").text(dia);
+
         } else {
             $("#overlay .enviado .nocountdown").addClass("active");
             $("#overlay .enviado .countdown").removeClass("active");

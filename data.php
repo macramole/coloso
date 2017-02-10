@@ -5,7 +5,14 @@ $PROCESSING_THRESHOLD = 5; //en minutos
 $SECONDS_PER_KB = 60; //cada K a cuantos minutos equivale
 
 $HORA_DE_APERTURA = 9;
-$HORA_DE_CIERRE = 20;
+$HORA_DE_CIERRE = 16;
+
+$dateHoraApertura = new DateTime();
+$dateHoraCierre = new DateTime();
+
+$dateHoraApertura->add( new DateInterval("P1D") );
+$dateHoraApertura->setTime($HORA_DE_APERTURA, 0);
+$dateHoraCierre->setTime($HORA_DE_CIERRE, 0);
 
 $ok = false;
 
@@ -51,37 +58,25 @@ if ( $ok && $arrResult["processing"] ) {
 
     $sumKB = $sumBytes / 1024;
     $sumSeconds = floor($sumKB * $SECONDS_PER_KB);
-    $hoy = new DateTime();
-    $hoy->add(new DateInterval("PT{$sumSeconds}S"));
+    $horario = new DateTime();
+    $horario->add(new DateInterval("PT{$sumSeconds}S"));
 
     $hoyOManiana = true; //true es hoy;
-    $horaResult = intval($hoy->format("H"));
 
-    if ( $horaResult >= $HORA_DE_CIERRE ) {
+    if ( $horario >= $dateHoraCierre ) {
         $hoyOManiana = false;
-        $horaResult = $horaResult - $HORA_DE_CIERRE + $HORA_DE_APERTURA;
+        $diff = $dateHoraCierre->diff($horario, true);
+        $horario = $dateHoraApertura;
+        $horario->add( $diff );
     }
 
     $arrResult["processing"] = array(
-        "horario" => "$horaResult:" . $hoy->format('i'),
+        "horario" => $horario->format('H:i'),
         "minutos" => $sumSeconds / 60,
         "hoy" => $hoyOManiana
     );
-
-
-    // $countdown = gmdate("H:i:s", $sumKB * $SECONDS_PER_KB);
-    // $arrCountdown = split( ":", $countdown );
-    // $arrResult["processing"] = array(
-    //     "hour" => $arrCountdown[0],
-    //     "min" => $arrCountdown[1],
-    //     "sec" => $arrCountdown[2]
-    // );
-
 }
 
 
 echo json_encode( $arrResult );
-// {
-//     "ok":true,
-//     "processing":{"hour":"00","min":"02","sec":"43"} or false
-// }
+// {"ok":true,"processing":{"horario":"09:43","minutos":18.483333333333,"hoy":false}} //
