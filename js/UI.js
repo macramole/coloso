@@ -1,7 +1,7 @@
 var UI = {
     DEFAULT_AREA: "Seleccionar área",
-    PLAY_TEXT: 'PLAY <img src="image/playIcon.png">',
-    PAUSE_TEXT: 'PAUSE <img src="image/pauseIcon.png">',
+    PLAY_TEXT: '<span>PLAY</span> <img src="image/playIcon.png">',
+    PAUSE_TEXT: '<span>PAUSE</span> <img src="image/pauseIcon.png">',
     ENVIAR_URL: "data.php",
     COUNTDOWN: false,
 
