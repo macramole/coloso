@@ -8,7 +8,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: url("../image/fondos/1.png");
   color: #878787;
   font-family: "Josefin Sans";
   font-weight: 600;
@@ -312,7 +311,11 @@ p {
   justify-content: space-between;
 }
 #mainWrapper #animation #buttons #btnPlay {
+  width: 19%;
   background-color: #ff00ab;
+}
+#mainWrapper #animation #buttons #btnPlay img {
+  width: 12%;
 }
 #mainWrapper #animation #buttons #btnBorrar {
   background-color: #b3b3b3;

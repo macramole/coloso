@@ -10,7 +10,7 @@ var UI = {
         UI.initFrames();
         UI.initButtons();
         UI.initIOsFix();
-
+        UI.setRandomBackground();
 
 
 
@@ -24,7 +24,12 @@ var UI = {
         });
 
     },
+    setRandomBackground: function(){
+      var imageIndex = Math.floor(Math.random() * 2) + 1;
+      console.log(imageIndex);
+      $("body").css("background","url('image/fondos/" + imageIndex.toString() + ".png')");
 
+    },
     initIOsFix: function() {
         var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
