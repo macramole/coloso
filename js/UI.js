@@ -139,7 +139,7 @@ var UI = {
         $("#btnCancelarEnviar").click(function(){
           $("#overlay, #overlay .enviar").removeClass("active");
         });
-        
+
         $("#btnEnviar").click(function() {
             var data = {
                 "frames": Frames.getAllFrames(),
@@ -213,9 +213,14 @@ var UI = {
             $("#overlay .enviado .countdown").addClass("active");
             $("#overlay .enviado .nocountdown").removeClass("active");
 
-            $("#overlay .enviado .countdown .hour").text(UI.COUNTDOWN.hour);
-            $("#overlay .enviado .countdown .min").text(UI.COUNTDOWN.min);
-            $("#overlay .enviado .countdown .sec").text(UI.COUNTDOWN.sec);
+            // $("#overlay .enviado .countdown .hour").text(UI.COUNTDOWN.hour);
+            // $("#overlay .enviado .countdown .min").text(UI.COUNTDOWN.min);
+            // $("#overlay .enviado .countdown .sec").text(UI.COUNTDOWN.sec);
+
+            var dia = UI.COUNTDOWN.hoy ? "HOY " : "MAÑANA ";
+            dia += "a las " + UI.COUNTDOWN.horario;
+
+            $("#overlay .enviado .countdown .cuando").text(dia);
         } else {
             $("#overlay .enviado .nocountdown").addClass("active");
             $("#overlay .enviado .countdown").removeClass("active");

@@ -1,12 +1,19 @@
 <?php
 include("./constants.php");
-$PROCESSING_THRESHOLD = 1; //en minutos
+$PROCESSING_THRESHOLD = 5; //en minutos
 
 $SECONDS_PER_KB = 60; //cada K a cuantos minutos equivale
 
+$HORA_DE_APERTURA = 09;
+$HORA_DE_CIERRE = 15;
+
 $ok = false;
 
+date_default_timezone_set("America/Argentina/Buenos_Aires");
+
 $json = file_get_contents('php://input');
+
+//TODO: aca habría que agregarle seguridad, el usuario puede subir lo que quiera
 
 if ( $json ) {
     $file = $UPLOAD_PATH .  date('Ymd-His') . ".json";
@@ -43,13 +50,32 @@ if ( $ok && $arrResult["processing"] ) {
     }
 
     $sumKB = $sumBytes / 1024;
-    $countdown = gmdate("H:i:s", $sumKB * $SECONDS_PER_KB);
-    $arrCountdown = split( ":", $countdown );
+    $sumSeconds = floor($sumKB * $SECONDS_PER_KB);
+    $hoy = new DateTime();
+    $hoy->add(new DateInterval("PT{$sumSeconds}S"));
+
+    $hoyOManiana = true; //true es hoy;
+    $horaResult = intval($hoy->format("H"));
+
+    if ( $horaResult >= $HORA_DE_CIERRE ) {
+        $hoyOManiana = false;
+        $horaResult = $horaResult - $HORA_DE_CIERRE + $HORA_DE_APERTURA;
+    }
+
     $arrResult["processing"] = array(
-        "hour" => $arrCountdown[0],
-        "min" => $arrCountdown[1],
-        "sec" => $arrCountdown[2]
+        "horario" => "$horaResult:" . $hoy->format('i'),
+        "minutos" => $sumSeconds / 60,
+        "hoy" => $hoyOManiana
     );
+
+
+    // $countdown = gmdate("H:i:s", $sumKB * $SECONDS_PER_KB);
+    // $arrCountdown = split( ":", $countdown );
+    // $arrResult["processing"] = array(
+    //     "hour" => $arrCountdown[0],
+    //     "min" => $arrCountdown[1],
+    //     "sec" => $arrCountdown[2]
+    // );
 
 }
 
