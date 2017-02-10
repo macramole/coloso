@@ -26,8 +26,7 @@ var UI = {
     },
     setRandomBackground: function(){
       var imageIndex = Math.floor(Math.random() * 2) + 1;
-      console.log(imageIndex);
-      $("body").css("background","url('image/fondos/" + imageIndex.toString() + ".png')");
+      $("body").css("background","black url('image/fondos/" + imageIndex.toString() + ".png')");
 
     },
     initIOsFix: function() {
