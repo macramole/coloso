@@ -4,7 +4,7 @@ $PROCESSING_THRESHOLD = 5; //en minutos
 
 $SECONDS_PER_KB = 60; //cada K a cuantos minutos equivale
 
-$HORA_DE_APERTURA = 09;
+$HORA_DE_APERTURA = 9;
 $HORA_DE_CIERRE = 15;
 
 $ok = false;
