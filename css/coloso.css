@@ -311,11 +311,19 @@ p {
   justify-content: space-between;
 }
 #mainWrapper #animation #buttons #btnPlay {
-  width: 19%;
+  width: 26%;
   background-color: #ff00ab;
+  position: relative;
+  text-align: left;
 }
 #mainWrapper #animation #buttons #btnPlay img {
-  width: 12%;
+  width: 13%;
+  position: absolute;
+  top: 23%;
+  right: 11%;
+}
+#mainWrapper #animation #buttons #btnPlay span {
+  position: relative;
 }
 #mainWrapper #animation #buttons #btnBorrar {
   background-color: #b3b3b3;
@@ -361,12 +369,10 @@ button {
   padding: 0.4em 0.6em 0.2em 0.6em;
   font-weight: 900;
 }
-button span {
-  position: relative;
-  top: -3px;
-  margin-left: 0.3em;
-  display: inline-block;
-  margin-top: -7px;
+button:focus,
+button::-moz-focus-inner {
+  outline: none;
+  border: 0;
 }
 input[type=range].normal {
   -webkit-appearance: none;
