@@ -37,7 +37,7 @@ var Coloso = {
         ]
     },
     //cada subgrupo cuales son todas sus piezas, se usa para definir el color en Coloso.setColorIfApagado
-    SUBGRUPOS_COMPLETOS : {
+    SUBGRUPOS_COMPLETOS: {
         "ojo_izquierdo": ["ojoIzqSup", "ojoIzqInf", "ojoIzqMedio"],
         "ojo_derecho": ["ojoDerSup", "ojoDerInf", "ojoDerMedio"],
         "boca": ["labioInf", "labiosCostado", "labioSup"], // no incluyo dientes porque son blancos
@@ -49,6 +49,7 @@ var Coloso = {
 
     grupoSelected: null,
     subgrupoSelected: null,
+    atColor: 0,
 
     init: function() {
         var mainSvg = document.getElementById("mainSvg");
@@ -80,6 +81,11 @@ var Coloso = {
             var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
                 Coloso.restoreColorsLayout();
+
+                if (this === Coloso.grupoSelected && Coloso.subgrupoSelected === null) {
+                    Coloso.toNextColor();
+                }
+
                 Coloso.grupoSelected = this;
                 Coloso.subgrupoSelected = null;
                 UI.onGrupoSelected();
@@ -104,6 +110,15 @@ var Coloso = {
             $(this).click(function() {
 
                 Coloso.restoreColorsLayout();
+
+                //si la sección clickeada es igual a la ya seleccionada
+                if ($(this).index() === $("img.selected").index()) {
+                    Coloso.toNextColor();
+                } else {
+                    $("#coloso #presets img").removeClass("selected");
+                    $(this).addClass("selected");
+                }
+
                 $("#coloso #presets img").removeClass("selected");
                 $(this).addClass("selected");
 
@@ -123,8 +138,14 @@ var Coloso = {
         });
         $("#coloso .boca img").each(function(i) {
             $(this).click(function() {
-                $("#coloso #presets img").removeClass("selected");
-                $(this).addClass("selected");
+
+                //si la sección seleccionada es igual a la ya clickeada
+                if ($(this).index() === $("img.selected").index()) {
+                    Coloso.toNextColor();
+                } else {
+                    $("#coloso #presets img").removeClass("selected");
+                    $(this).addClass("selected");
+                }
 
                 switch (Coloso.grupoSelected.id) {
                     case "boca":
@@ -158,8 +179,14 @@ var Coloso = {
         $("#coloso .corazon img").each(function(i) {
             $(this).click(function() {
                 Coloso.restoreColorsLayout();
-                $("#coloso #presets img").removeClass("selected");
-                $(this).addClass("selected");
+
+                //si la sección clickeada es igual a la ya seleccionada
+                if ($(this).index() === $("img.selected").index()) {
+                    Coloso.toNextColor();
+                } else {
+                    $("#coloso #presets img").removeClass("selected");
+                    $(this).addClass("selected");
+                }
 
                 switch (Coloso.grupoSelected.id) {
                     case "corazon":
@@ -176,6 +203,11 @@ var Coloso = {
     },
     //para volver a la grilla de 5 colores
     //está función se corre siempre que se hace click sobre un grupo o un subgrupo (por ahí no es necesario...)
+    toNextColor: function() {
+        Coloso.atColor = (++Coloso.atColor) % 4;
+        Coloso.setColor(Coloso.atColor);
+        Frames.setColor(Coloso.atColor);
+    },
     restoreColorsLayout: function() {
         $("#colores li").each(function(i) {
             //console.log($(this));
@@ -187,13 +219,13 @@ var Coloso = {
     },
 
     //recorre las partes del subgrupo seleccionado y devuelve el color (o Coloso.COLOR_APAGADO)
-    getCurrentSubgrupoColor : function() {
+    getCurrentSubgrupoColor: function() {
         var keysSubGrupo = Coloso.SUBGRUPOS_COMPLETOS[Coloso.grupoSelected.id];
         var currentSubGrupoColor = Coloso.COLOR_APAGADO;
 
         for (var i = 0; i < keysSubGrupo.length; i++) {
             var subGrupoColor = Frames.getColor(keysSubGrupo[i]);
-            if ( subGrupoColor != Coloso.COLOR_APAGADO) {
+            if (subGrupoColor != Coloso.COLOR_APAGADO) {
                 currentSubGrupoColor = subGrupoColor;
                 break;
             }
@@ -204,7 +236,7 @@ var Coloso = {
 
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
     setColorIfApagado: function() {
-        var rIdx = Math.floor(Math.random()* 4 );
+        var rIdx = Math.floor(Math.random() * 4);
 
         //si NO elegió un subgrupo se prende directo si estaba apagado
         if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
@@ -218,8 +250,8 @@ var Coloso = {
             var currentSubGrupoColor = Coloso.getCurrentSubgrupoColor();
             var colorASetear = rIdx;
 
-            if ( currentSubGrupoColor != Coloso.COLOR_APAGADO ) {
-                 colorASetear = currentSubGrupoColor;
+            if (currentSubGrupoColor != Coloso.COLOR_APAGADO) {
+                colorASetear = currentSubGrupoColor;
             }
 
             Coloso.setColor(colorASetear);

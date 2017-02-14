@@ -24,9 +24,9 @@ var UI = {
         });
 
     },
-    setRandomBackground: function(){
-      var imageIndex = Math.floor(Math.random() * 2) + 1;
-      $("body").css("background","black url('image/fondos/" + imageIndex.toString() + ".png')");
+    setRandomBackground: function() {
+        var imageIndex = Math.floor(Math.random() * 2) + 1;
+        $("body").css("background", "black url('image/fondos/" + imageIndex.toString() + ".png')");
 
     },
     initIOsFix: function() {
@@ -47,7 +47,7 @@ var UI = {
                 Frames.setColor(i);
                 UI.onFrameSetted();
 
-            })
+            });
         });
 
     },
@@ -91,7 +91,7 @@ var UI = {
             if ($(this).attr("data-play") === "0") {
                 var validAnim;
                 var count = 0;
-                for (var i = 0; i<Frames.frames.length; i++){
+                for (var i = 0; i < Frames.frames.length; i++) {
                     if (Frames.frames[i] === undefined) {
                         count++;
                     }
@@ -140,8 +140,8 @@ var UI = {
             }
         });
 
-        $("#btnCancelarEnviar").click(function(){
-          $("#overlay, #overlay .enviar").removeClass("active");
+        $("#btnCancelarEnviar").click(function() {
+            $("#overlay, #overlay .enviar").removeClass("active");
         });
 
         $("#btnEnviar").click(function() {
@@ -213,7 +213,7 @@ var UI = {
     },
 
     onEnviado: function() {
-        $("#overlay .enviado .name").text( $("#txtNombre").val() );
+        $("#overlay .enviado .name").text($("#txtNombre").val());
 
         if (UI.COUNTDOWN) {
             $("#overlay .enviado .countdown").addClass("active");
@@ -250,7 +250,7 @@ var UI = {
             }
 
             // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
-                $("#presets div.visible img:first-child").click();
+            $("#presets div.visible img:first-child").click();
             // }
         }
 
@@ -261,7 +261,7 @@ var UI = {
             $("#presets .corazon").addClass("visible");
 
             // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
-                $("#presets div.visible img:first-child").click();
+            $("#presets div.visible img:first-child").click();
             // }
         }
 
