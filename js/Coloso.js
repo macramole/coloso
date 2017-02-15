@@ -112,14 +112,6 @@ var Coloso = {
 
                 Coloso.restoreColorsLayout();
 
-                //si la sección clickeada es igual a la ya seleccionada
-                if ($(this).index() === $("img.selected").index()) {
-                    Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
-                    Coloso.toNextColor();
-                } else {
-                    $("#coloso #presets img").removeClass("selected");
-                    $(this).addClass("selected");
-                }
 
                 switch (Coloso.grupoSelected.id) {
                     case "ojo_izquierdo":
@@ -133,12 +125,8 @@ var Coloso = {
                         Coloso.setColorIfApagado();
                         break;
                 }
-            });
-        });
-        $("#coloso .boca img").each(function(i) {
-            $(this).click(function() {
 
-                //si la sección seleccionada es igual a la ya clickeada
+                //si la sección clickeada es igual a la ya seleccionada
                 if ($(this).index() === $("img.selected").index()) {
                     Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
                     Coloso.toNextColor();
@@ -146,7 +134,11 @@ var Coloso = {
                     $("#coloso #presets img").removeClass("selected");
                     $(this).addClass("selected");
                 }
-
+            });
+        });
+        $("#coloso .boca img").each(function(i) {
+            $(this).click(function() {
+                console.log(this);
                 switch (Coloso.grupoSelected.id) {
                     case "boca":
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
@@ -174,13 +166,8 @@ var Coloso = {
                         Coloso.setColorIfApagado();
                         break;
                 }
-            });
-        });
-        $("#coloso .corazon img").each(function(i) {
-            $(this).click(function() {
-                Coloso.restoreColorsLayout();
 
-                //si la sección clickeada es igual a la ya seleccionada
+                //si la sección seleccionada es igual a la ya clickeada
                 if ($(this).index() === $("img.selected").index()) {
                     Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
                     Coloso.toNextColor();
@@ -188,6 +175,13 @@ var Coloso = {
                     $("#coloso #presets img").removeClass("selected");
                     $(this).addClass("selected");
                 }
+            });
+        });
+        $("#coloso .corazon img").each(function(i) {
+            $(this).click(function() {
+
+                Coloso.restoreColorsLayout();
+
 
                 switch (Coloso.grupoSelected.id) {
                     case "corazon":
@@ -199,19 +193,27 @@ var Coloso = {
                         Coloso.setColorIfApagado();
                         break;
                 }
+
+                //si la sección clickeada es igual a la ya seleccionada
+                if ($(this).index() === $("img.selected").index()) {
+                    Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
+                    Coloso.toNextColor();
+                } else {
+                    $("#coloso #presets img").removeClass("selected");
+                    $(this).addClass("selected");
+                }
             });
         });
     },
-    //para volver a la grilla de 5 colores
-    //está función se corre siempre que se hace click sobre un grupo o un subgrupo (por ahí no es necesario...)
     toNextColor: function() {
         Coloso.atColor = (++Coloso.atColor) % 4;
         Coloso.setColor(Coloso.atColor);
         Frames.setColor(Coloso.atColor);
     },
+    //para volver a la grilla de 5 colores
+    //está función se corre siempre que se hace click sobre un grupo o un subgrupo (por ahí no es necesario...)
     restoreColorsLayout: function() {
         $("#colores li").each(function(i) {
-            //console.log($(this));
             $(this).removeClass("blanco");
             $(this).removeClass("invisible");
 
