@@ -138,7 +138,7 @@ var Coloso = {
         });
         $("#coloso .boca img").each(function(i) {
             $(this).click(function() {
-                console.log(this);
+                console.log(this);//what is the meaning of this??
                 switch (Coloso.grupoSelected.id) {
                     case "boca":
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
