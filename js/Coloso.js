@@ -83,6 +83,7 @@ var Coloso = {
                 Coloso.restoreColorsLayout();
 
                 if (this === Coloso.grupoSelected && Coloso.subgrupoSelected === null) {
+                    Coloso.atColor = Frames.getColor(Coloso.grupoSelected.id);
                     Coloso.toNextColor();
                 }
 
@@ -113,14 +114,12 @@ var Coloso = {
 
                 //si la sección clickeada es igual a la ya seleccionada
                 if ($(this).index() === $("img.selected").index()) {
+                    Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
                     Coloso.toNextColor();
                 } else {
                     $("#coloso #presets img").removeClass("selected");
                     $(this).addClass("selected");
                 }
-
-                $("#coloso #presets img").removeClass("selected");
-                $(this).addClass("selected");
 
                 switch (Coloso.grupoSelected.id) {
                     case "ojo_izquierdo":
@@ -141,6 +140,7 @@ var Coloso = {
 
                 //si la sección seleccionada es igual a la ya clickeada
                 if ($(this).index() === $("img.selected").index()) {
+                    Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
                     Coloso.toNextColor();
                 } else {
                     $("#coloso #presets img").removeClass("selected");
@@ -182,6 +182,7 @@ var Coloso = {
 
                 //si la sección clickeada es igual a la ya seleccionada
                 if ($(this).index() === $("img.selected").index()) {
+                    Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
                     Coloso.toNextColor();
                 } else {
                     $("#coloso #presets img").removeClass("selected");
@@ -237,7 +238,7 @@ var Coloso = {
     ////si esta apagado que lo pinte del primer color. esto se llama desde UI
     setColorIfApagado: function() {
         var rIdx = Math.floor(Math.random() * 4);
-
+        var atColor = rIdx;
         //si NO elegió un subgrupo se prende directo si estaba apagado
         if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
             if (Frames.getColor(Coloso.grupoSelected.id) == Coloso.COLOR_APAGADO) {

@@ -149,6 +149,13 @@ var Frames = {
         }
         return true;
     },
+
+    getAllFramesToSend: function() {
+        //pero antes!
+        Frames.checkLabioIntermedio();
+        return Frames.getAllFrames();
+    },
+
     isFrameObjectValid: function() { //empty = invalid
         var count = 0;
         if (Frames.frames.length > 1) {
@@ -162,8 +169,6 @@ var Frames = {
                     count = 0;
                 }
             }
-            //pero antes!
-            Frames.checkLabioIntermedio();
             return true;
         } else {
             return false;

@@ -146,7 +146,7 @@ var UI = {
 
         $("#btnEnviar").click(function() {
             var data = {
-                "frames": Frames.getAllFrames(),
+                "frames": Frames.getAllFramesToSend(),
                 "velocidad": $("#slideVelocidad").val(),
                 "nombre": $("#txtNombre").val(),
                 "email": $("#txtEmail").val()
@@ -177,7 +177,6 @@ var UI = {
         });
         $("#btnNuevaAnimacion").click(function() {
             $("#overlay, #overlay .enviado").removeClass("active");
-            //TODO que vuelva a empezar;
             Frames.reset();
             UI.reset();
 
