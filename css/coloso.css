@@ -1,4 +1,6 @@
-* {
+button,
+#title,
+#animation {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -28,6 +30,13 @@ h1 span {
   font-size: 0.8em;
   letter-spacing: 0;
   font-weight: 600;
+}
+h2 {
+  font-size: 1.9em;
+  margin-top: 0.4em;
+}
+h3 {
+  margin: 0;
 }
 p {
   margin: 0;
@@ -82,16 +91,22 @@ p {
 }
 #mainWrapper #content #overlay p {
   margin-bottom: 1em;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 #mainWrapper #content #overlay > div {
   position: relative;
-  top: 50%;
+  top: 44%;
   transform: translateY(-50%);
   display: none;
 }
 #mainWrapper #content #overlay > div.active {
   display: block;
+}
+#mainWrapper #content #overlay > div.enviar p {
+  font-size: 1.6em;
+}
+#mainWrapper #content #overlay > div.enviar label {
+  font-size: 1.5em;
 }
 #mainWrapper #content #overlay > div.enviar label,
 #mainWrapper #content #overlay > div.enviar input,
@@ -107,20 +122,22 @@ p {
   float: right;
 }
 #mainWrapper #content #overlay > div.enviado > div {
-  visibility: hidden;
+  display: none;
+  font-size: 1.4em;
 }
 #mainWrapper #content #overlay > div.enviado > div.active {
-  visibility: visible;
+  display: block;
 }
 #mainWrapper #content #overlay #btnCancelarEnviar {
   margin-right: 10px;
   background: none;
 }
 #mainWrapper #content #overlay button {
-  background-color: #00f;
+  background-color: #00c6ff;
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 1.6em;
   margin-top: 1em;
+  color: #000;
 }
 #mainWrapper #coloso {
   height: 65%;

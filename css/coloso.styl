@@ -1,5 +1,5 @@
 // out: ./coloso.css, sourcemap: true, compress: false
-* {
+button, #title, #animation {
     -moz-user-select: -moz-none;
    -khtml-user-select: none;
    -webkit-user-select: none;
@@ -33,6 +33,15 @@ h1 {
         letter-spacing: 0;
         font-weight: 600;
     }
+}
+
+h2 {
+    font-size: 1.9em;
+    margin-top: 0.4em;
+}
+
+h3 {
+    margin: 0;
 }
 
 p {
@@ -118,12 +127,12 @@ p {
 
             p {
                 margin-bottom: 1em;
-                font-size: 1.2em;
+                font-size: 1.4em;
             }
 
             > div {
                 position: relative;
-                top: 50%;
+                top: 44%;
                 transform: translateY(-50%);
                 display: none;
 
@@ -132,6 +141,14 @@ p {
                 }
 
                 &.enviar {
+                    p {
+                        font-size: 1.6em;
+                    }
+
+                    label {
+                        font-size: 1.5em;
+                    }
+
                     label, input, button {
                         display: block;
                         text-align: left;
@@ -148,10 +165,11 @@ p {
                 }
 
                 &.enviado > div {
-                    visibility: hidden;
+                    display: none;
+                    font-size: 1.4em;
 
                     &.active {
-                        visibility: visible;
+                        display: block;
                     }
                 }
             }
@@ -162,10 +180,11 @@ p {
             }
 
             button {
-                background-color: blue;
+                background-color: #00c6ff;
                 text-transform: uppercase;
-                font-size: 1em;
+                font-size: 1.6em;
                 margin-top: 1em;
+                color: black;
             }
         }
     }
