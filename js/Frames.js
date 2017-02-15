@@ -17,8 +17,8 @@ var Frames = {
 
 
     },
-    reset: function(){
-      Frames.init();
+    reset: function() {
+        Frames.init();
     },
     //devuelvo un obj con todas las partes en gris
     getFrameObject: function() {
@@ -51,7 +51,7 @@ var Frames = {
             }
 
         }
-
+        obj.labioIntermedio = 4;
         return obj;
     },
     getAllFrames: function() {
@@ -100,8 +100,8 @@ var Frames = {
             }
 
             for (var i = 0; i < Coloso.SUBGRUPOS[grupo][idxBiggerSubGroup].length; i++) {
-              var seccion = Coloso.SUBGRUPOS[grupo][idxBiggerSubGroup][i];
-              Frames.frames[Frames.actualFrame][seccion] = 4;
+                var seccion = Coloso.SUBGRUPOS[grupo][idxBiggerSubGroup][i];
+                Frames.frames[Frames.actualFrame][seccion] = 4;
             }
             //ahora si pintame
             for (var key in Frames.frames[Frames.actualFrame]) {
@@ -149,6 +149,13 @@ var Frames = {
         }
         return true;
     },
+
+    getAllFramesToSend: function() {
+        //pero antes!
+        Frames.checkLabioIntermedio();
+        return Frames.getAllFrames();
+    },
+
     isFrameObjectValid: function() { //empty = invalid
         var count = 0;
         if (Frames.frames.length > 1) {
@@ -168,5 +175,15 @@ var Frames = {
         }
 
     },
+    //si fija si el labio superior está pintado y es el único de la boca. En ese caso, al coloso le llega que es el labio intermedio :)
+    checkLabioIntermedio: function() {
+        for (var i in Frames.frames) {
+            //siempre que se pinta el labio superior, el inferior también se pinta, salvo que sea el intermedio
+            if (Frames.frames[i].labioSup !== 4 && Frames.frames[i].labioInf === 4) {
+                Frames.frames[i].labioIntermedio = Frames.frames[i].labioSup;
+                Frames.frames[i].labioSup = 4;
+            }
+        }
+    }
 
 };
