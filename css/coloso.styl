@@ -112,6 +112,44 @@ p {
         position: relative;
         background-color: black;
 
+        #overlayTips {
+            position: absolute;
+            background-color: rgba(0,198,255,0.8);
+            z-index: 10000;
+            width: 90%;
+            color: #fff;
+            display: none;
+            padding: 2em 0;
+            border-radius: 7px;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &.active {
+                display: block;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0 7%;
+                margin: 0;
+                margin-bottom: 1.5em;
+
+                li {
+                    font-size: 1.3em;
+                    text-shadow: 1px 1px 2px black;
+                    margin-bottom: 1em;
+                }
+            }
+
+            button {
+                background-color: #FF00AB;
+                display: block;
+                width: 100%;
+                font-size: 1.4em;
+            }
+        }
+
         #overlay {
             position: absolute;
             background-color: rgba(0,0,0,0.8);

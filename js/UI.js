@@ -130,6 +130,10 @@ var UI = {
         });
         $("#btnComenzar").click(function() {
             $("#overlay, #overlay .hola").removeClass("active");
+            $("#overlayTips").addClass("active");
+        });
+        $("#btnTipsClose").click(function() {
+            $("#overlayTips").removeClass("active");
         });
 
         $("#btnMostrarEnviar").click(function() {

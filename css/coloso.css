@@ -77,6 +77,39 @@ p {
   position: relative;
   background-color: #000;
 }
+#mainWrapper #content #overlayTips {
+  position: absolute;
+  background-color: rgba(0,198,255,0.8);
+  z-index: 10000;
+  width: 90%;
+  color: #fff;
+  display: none;
+  padding: 2em 0;
+  border-radius: 7px;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#mainWrapper #content #overlayTips.active {
+  display: block;
+}
+#mainWrapper #content #overlayTips ul {
+  list-style: none;
+  padding: 0 7%;
+  margin: 0;
+  margin-bottom: 1.5em;
+}
+#mainWrapper #content #overlayTips ul li {
+  font-size: 1.3em;
+  text-shadow: 1px 1px 2px #000;
+  margin-bottom: 1em;
+}
+#mainWrapper #content #overlayTips button {
+  background-color: #ff00ab;
+  display: block;
+  width: 100%;
+  font-size: 1.4em;
+}
 #mainWrapper #content #overlay {
   position: absolute;
   background-color: rgba(0,0,0,0.8);
