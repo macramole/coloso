@@ -149,6 +149,11 @@ var UI = {
         });
 
         $("#btnEnviar").click(function() {
+            $this = $(this);
+
+            $this.attr("disabled", true);
+            $this.text("Enviando...");
+
             var data = {
                 "frames": Frames.getAllFramesToSend(),
                 "velocidad": $("#slideVelocidad").val(),
@@ -172,9 +177,14 @@ var UI = {
 
                     UI.COUNTDOWN = result.processing;
                     UI.onEnviado();
+
+                    $this.attr("disabled", false);
+                    $this.text("Enviar");
                 },
                 error: function() {
                     alert("Hubo un error enviando la animación al servidor, por favor, inténtelo más tarde.");
+                    $this.attr("disabled", false);
+                    $this.text("Enviar");
                 }
             });
 

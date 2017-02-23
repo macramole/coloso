@@ -1,18 +1,6 @@
 <?php
 include("./constants.php");
-$PROCESSING_THRESHOLD = 5; //en minutos
-
-$SECONDS_PER_KB = 60; //cada K a cuantos minutos equivale
-
-$HORA_DE_APERTURA = 9;
-$HORA_DE_CIERRE = 16;
-
-$dateHoraApertura = new DateTime();
-$dateHoraCierre = new DateTime();
-
-$dateHoraApertura->add( new DateInterval("P1D") );
-$dateHoraApertura->setTime($HORA_DE_APERTURA, 0);
-$dateHoraCierre->setTime($HORA_DE_CIERRE, 0);
+include("./cuantoFalta.php");
 
 $ok = false;
 
@@ -22,12 +10,17 @@ $json = file_get_contents('php://input');
 
 //TODO: aca habría que agregarle seguridad, el usuario puede subir lo que quiera
 
-if ( $json ) {
-    $file = $UPLOAD_PATH .  date('Ymd-His') . ".json";
-    file_put_contents($file, $json);
-    $ok = true;
-}
+$file = null;
 
+if ( $json ) {
+    $file = date('Ymd-His') . ".json";
+    $fileWithPath = $UPLOAD_PATH . $file;
+    file_put_contents($fileWithPath, $json);
+    $ok = true;
+} else {
+    echo "error";
+    exit();
+}
 
 $arrResult = array("ok" => $ok, "processing" => false);
 
@@ -47,36 +40,11 @@ if (file_exists($PROCESSING_FILE)) {
 }
 
 if ( $ok && $arrResult["processing"] ) {
-    $sumBytes = 0;
-
-    foreach ( scandir( $UPLOAD_PATH ) as $file ) {
-        if ( substr($file, strrpos($file, ".") + 1) == "json" ) {
-            $sumBytes += filesize( $UPLOAD_PATH . $file );
-        }
-        // echo $file . "<br>";
-    }
-
-    $sumKB = $sumBytes / 1024;
-    $sumSeconds = floor($sumKB * $SECONDS_PER_KB);
-    $horario = new DateTime();
-    $horario->add(new DateInterval("PT{$sumSeconds}S"));
-
-    $hoyOManiana = true; //true es hoy;
-
-    if ( $horario >= $dateHoraCierre ) {
-        $hoyOManiana = false;
-        $diff = $dateHoraCierre->diff($horario, true);
-        $horario = $dateHoraApertura;
-        $horario->add( $diff );
-    }
-
-    $arrResult["processing"] = array(
-        "horario" => $horario->format('H:i'),
-        "minutos" => $sumSeconds / 60,
-        "hoy" => $hoyOManiana
-    );
+    $arrResult["processing"] = cuandoSeExhibe($file);
 }
 
+include("./sendPrimerMail.php");
+exit();
 
 echo json_encode( $arrResult );
 // {"ok":true,"processing":{"horario":"09:43","minutos":18.483333333333,"hoy":false}} //
