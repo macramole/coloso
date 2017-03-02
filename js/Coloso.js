@@ -40,7 +40,7 @@ var Coloso = {
     SUBGRUPOS_COMPLETOS: {
         "ojo_izquierdo": ["ojoIzqSup", "ojoIzqInf", "ojoIzqMedio"],
         "ojo_derecho": ["ojoDerSup", "ojoDerInf", "ojoDerMedio"],
-        "boca": ["labioInf", "labiosCostado", "labioSup"], // no incluyo dientes porque son blancos
+        "boca": ["labioInf", "labiosCostado", "labioSup","dientes"], // no incluyo dientes porque son blancos
         "corazon": ["corazonTriSup", "corazonTriInf", "corazonDiamante"]
     },
 
@@ -81,7 +81,7 @@ var Coloso = {
             var nombreGrupo = Coloso.GRUPOS[i];
             grupo.onclick = function() {
                 Coloso.restoreColorsLayout();
-
+                
                 if (this === Coloso.grupoSelected && Coloso.subgrupoSelected === null) {
                     Coloso.atColor = Frames.getColor(Coloso.grupoSelected.id);
                     Coloso.toNextColor();
@@ -116,7 +116,7 @@ var Coloso = {
                 switch (Coloso.grupoSelected.id) {
                     case "ojo_izquierdo":
                     case "ojo_derecho":
-
+                        
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
                             return "#" + x;
                         }).join(", ");
@@ -138,9 +138,10 @@ var Coloso = {
         });
         $("#coloso .boca img").each(function(i) {
             $(this).click(function() {
-                console.log(this);//what is the meaning of this??
+
                 switch (Coloso.grupoSelected.id) {
                     case "boca":
+
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
                             return "#" + x;
                         }).join(", ");
@@ -166,7 +167,6 @@ var Coloso = {
                         Coloso.setColorIfApagado();
                         break;
                 }
-
                 //si la sección seleccionada es igual a la ya clickeada
                 if ($(this).index() === $("img.selected").index()) {
                     Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);
@@ -182,7 +182,6 @@ var Coloso = {
 
                 Coloso.restoreColorsLayout();
 
-
                 switch (Coloso.grupoSelected.id) {
                     case "corazon":
                         var query = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i].map(function(x) {
@@ -193,7 +192,6 @@ var Coloso = {
                         Coloso.setColorIfApagado();
                         break;
                 }
-
                 //si la sección clickeada es igual a la ya seleccionada
                 if ($(this).index() === $("img.selected").index()) {
                     Coloso.atColor = Frames.getColor(Coloso.subgrupoSelected[0].id);

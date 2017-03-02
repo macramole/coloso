@@ -13,7 +13,6 @@ var UI = {
         UI.setRandomBackground();
 
 
-
         //setup slider
         $("#slideVelocidad").bind('input', function() {
             if (Animation.isPlaying) {
@@ -25,7 +24,7 @@ var UI = {
 
     },
     setRandomBackground: function() {
-        var imageIndex = Math.floor(Math.random() * 2) + 1;
+        var imageIndex = Math.floor(Math.random() * 3) + 1;
         $("body").css("background", "black url('image/fondos/" + imageIndex.toString() + ".png')");
 
     },
@@ -165,7 +164,6 @@ var UI = {
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function(result) {
-                    // console.log(result);
 
                     $("#overlay .enviar").removeClass("active");
                     $("#overlay .enviado").addClass("active");
@@ -253,18 +251,21 @@ var UI = {
             }
 
             // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
-            $("#presets div.visible img:first-child").click();
+            if (Coloso.grupoSelected.id === "cabeza") {
+                $("#presets div.visible img:first-child").click();
+            } else {
+                $("#presets div.visible img").eq(UI.getLastclickedSubgroup()).click();
+            }
             // }
         }
 
         if (Coloso.grupoSelected.id == "corazon") {
             $("#presets, #presets > div").removeClass("visible");
-            $("#coloso #presets img").removeClass("selected");
+            //$("#coloso #presets img").removeClass("selected");
             $("#presets").addClass("visible");
             $("#presets .corazon").addClass("visible");
-
             // if ( Coloso.getCurrentSubgrupoColor() == Coloso.COLOR_APAGADO ) {
-            $("#presets div.visible img:first-child").click();
+            $("#presets div.visible img").eq(UI.getLastclickedSubgroup()).click();
             // }
         }
 
@@ -272,6 +273,31 @@ var UI = {
         //si NO elegió un subgrupo se prende directo si estaba apagado
         if (Object.keys(Coloso.SUBGRUPOS).indexOf(Coloso.grupoSelected.id) == -1) {
             Coloso.setColorIfApagado();
+        }
+    },
+    getLastclickedSubgroup: function() {
+        var keysSubGrupo = Coloso.SUBGRUPOS_COMPLETOS[Coloso.grupoSelected.id];
+        var coloredSections = [];
+        var selectedSubGroup;
+        for (var i = 0; i < keysSubGrupo.length; i++) {
+            var subGrupoColor = Frames.getColor(keysSubGrupo[i]);
+
+            if (subGrupoColor !== Coloso.COLOR_APAGADO) {
+                coloredSections.push(keysSubGrupo[i]);
+            }
+        }
+        for (var i = 0; i < Coloso.SUBGRUPOS[Coloso.grupoSelected.id].length; i++) {
+            var seccion = Coloso.SUBGRUPOS[Coloso.grupoSelected.id][i];
+            
+            if (arraysEqual(coloredSections,seccion)) {
+                selectedSubGroup = i;
+            }
+        }
+
+        if (coloredSections.length === 0) {
+            return 0;//ninguna seccion preseleccionada, mandá la primera
+        } else {
+            return selectedSubGroup;
         }
     },
     onFrameChanged: function(i) {
@@ -289,6 +315,24 @@ var UI = {
             $("#animation .frame")[i].style = "opacity: 1;"
         }
         */
-    },
-
+    }
+};
+function arraysEqual(a,b) {
+    /*
+        Array-aware equality checker:
+        Returns whether arguments a and b are == to each other;
+        however if they are equal-lengthed arrays, returns whether their 
+        elements are pairwise == to each other recursively under this
+        definition.
+    */
+    if (a instanceof Array && b instanceof Array) {
+        if (a.length!=b.length)  // assert same length
+            return false;
+        for(var i=0; i<a.length; i++)  // assert each element equal
+            if (!arraysEqual(a[i],b[i]))
+                return false;
+        return true;
+    } else {
+        return a==b;  // if not both arrays, should be the same
+    }
 }
