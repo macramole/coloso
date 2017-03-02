@@ -44,7 +44,6 @@ if ( $ok && $arrResult["processing"] ) {
 }
 
 include("./sendPrimerMail.php");
-exit();
 
 echo json_encode( $arrResult );
 // {"ok":true,"processing":{"horario":"09:43","minutos":18.483333333333,"hoy":false}} //
