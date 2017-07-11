@@ -9,14 +9,15 @@ $mail = new PHPMailer;
 $mail->CharSet = 'UTF-8';
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'ssl://mail.parleboo.com';  // Specify main and backup SMTP servers
+// $mail->SMTPDebug = 2;                                      
+$mail->Host = 'mx1.hostinger.com.ar';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'localhost@parleboo.com';                 // SMTP username
+$mail->Username = 'coloso@leandrogarber.info';                 // SMTP username
 $mail->Password = '111asd222';                           // SMTP password
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
+$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
 
-$mail->setFrom('localhost@parleboo.com', 'Coloso');
+$mail->setFrom('coloso@leandrogarber.info', 'Coloso');
 
 // $mail->addAddress('ellen@example.com');               // Name is optional
 // $mail->addReplyTo('info@example.com', 'Information');

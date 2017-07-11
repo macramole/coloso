@@ -6,6 +6,9 @@ $fileToMail = null;
 $CANT_FILES_UNTIL_MAIL = 2;
 $cantFilesUntilMail = $CANT_FILES_UNTIL_MAIL;
 
+//actualizo procesando.txt para que sepa que está procesando
+file_put_contents($PROCESSING_FILE, "ok");
+
 foreach ( scandir( $UPLOAD_PATH ) as $file ) {
     if ( substr($file, strrpos($file, ".") + 1) == "json" ) {
         // echo $file . "<br>";
